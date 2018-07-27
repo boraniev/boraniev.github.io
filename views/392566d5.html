@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html class="frame" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>Deployment</title>
+
+	<!-- JQUERY (use 1.x branch to be compatible with IE 6/7/8) -->
+	<script type="text/javascript" src="../lib/jquery/js/jquery-1.11.2.min.js"></script>
+	<!-- BOOTSTRAP -->
+	<link type="text/css" rel="stylesheet" href="../lib/bootstrap/css/bootstrap-3.3.2.min.css">
+	<link type="text/css" rel="stylesheet" href="../lib/bootstrap/css/bootstrap-theme-3.3.2.min.css">
+	<script type="text/javascript" src="../lib/bootstrap/js/bootstrap-3.3.2.min.js"></script>
+	<!-- REPORT SPECIFIC -->
+	<link type="text/css" rel="stylesheet" href="../css/model.css">
+	<link type="text/css" rel="stylesheet" href="../css/i18n.css">
+	<script type="text/javascript" src="../js/frame.js"></script>
+</head>
+
+<body>
+	<div class="panel panel-default root-panel">
+		<div class="panel-heading root-panel-heading">
+			<b>Deployment</b>
+			(<span class="i18n-viewpoint-0"></span>)
+			<a class="glyphicon glyphicon-info-sign" id="hint-viewpoint0" target="hint"></a>
+		</div>
+		<div class="panel-body root-panel-body">
+			<img class="diagram" src="../images/392566d5.png" alt="Deployment">
+			<div role="tabpanel">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#documentation" aria-controls="documentation" role="tab" data-toggle="tab" class="i18n-documentation"></a></li>
+					<li role="presentation"><a href="#properties" aria-controls="properties" role="tab" data-toggle="tab" class="i18n-properties"></a></li>
+					<li role="presentation"><a href="#elements" aria-controls="elements" role="tab" data-toggle="tab" class="i18n-elements"></a></li>
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="documentation">
+						<textarea id="docsrc" style="display:none">Hosted by </textarea>
+						<div id="doctgt" style="white-space:pre-wrap"></div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="properties">
+						<table class="table table-striped table-hover table-condensed">
+							<thead>
+								<tr>
+									<th class="i18n-key"></th>
+									<th class="i18n-value"></th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="elements">
+						<table class="table table-striped table-hover table-condensed">
+							<thead>
+								<tr>
+									<th class="i18n-name"></th>
+									<th class="i18n-type"></th>
+								</tr>
+							</thead>
+							<tbody>
+										<tr><td> <a href="../elements/8acba468.html" target="element"> AWS </a> </td><td class="i18n-elementtype-Device"></td></tr>
+												<tr><td> <a href="../elements/81a32fc2.html" target="element"> AWS API Gateway </a> </td><td class="i18n-elementtype-InfrastructureFunction"></td></tr>
+														<tr><td> <a href="../elements/bd03df07.html" target="element"> bbqservice API </a> </td><td class="i18n-elementtype-ApplicationInterface"></td></tr>
+														<tr><td> <a href="../elements/e8ff9576.html" target="element"> ListBBQ API </a> </td><td class="i18n-elementtype-ApplicationInterface"></td></tr>
+														<tr><td> <a href="../elements/5b23cad8.html" target="element"> getbbquser </a> </td><td class="i18n-elementtype-ApplicationInterface"></td></tr>
+														<tr><td> <a href="../elements/432ec221.html" target="element"> isitactive </a> </td><td class="i18n-elementtype-ApplicationInterface"></td></tr>
+														<tr><td> <a href="../elements/953d7706.html" target="element"> activedevices </a> </td><td class="i18n-elementtype-ApplicationInterface"></td></tr>
+												
+												<tr><td> <a href="../elements/1aa65890.html" target="element"> AWS Lamda </a> </td><td class="i18n-elementtype-InfrastructureFunction"></td></tr>
+														<tr><td> <a href="../elements/31c4b63e.html" target="element"> bbqService Function </a> </td><td class="i18n-elementtype-ApplicationComponent"></td></tr>
+														<tr><td> <a href="../elements/d9fae039.html" target="element"> ListBBQ Function </a> </td><td class="i18n-elementtype-ApplicationComponent"></td></tr>
+														<tr><td> <a href="../elements/8280432c.html" target="element"> GetBBQUser </a> </td><td class="i18n-elementtype-ApplicationComponent"></td></tr>
+														<tr><td> <a href="../elements/149c753a.html" target="element"> isitactive Function </a> </td><td class="i18n-elementtype-ApplicationComponent"></td></tr>
+														<tr><td> <a href="../elements/067b5d03.html" target="element"> ActiveDevices </a> </td><td class="i18n-elementtype-ApplicationComponent"></td></tr>
+												
+												<tr><td> <a href="../elements/3f384ac9.html" target="element"> AWS IoT </a> </td><td class="i18n-elementtype-InfrastructureFunction"></td></tr>
+														<tr><td> <a href="../elements/5164f744.html" target="element"> Thing Shadow </a> </td><td class="i18n-elementtype-DataObject"></td></tr>
+												
+												<tr><td> <a href="../elements/051eb6f3.html" target="element"> AWS DynamoDB  </a> </td><td class="i18n-elementtype-InfrastructureFunction"></td></tr>
+														<tr><td> <a href="../elements/6984d43b.html" target="element"> DynamoDB BBQ Table </a> </td><td class="i18n-elementtype-DataObject"></td></tr>
+														<tr><td> <a href="../elements/d1b93fdb.html" target="element"> DynamoDB Users Table  </a> </td><td class="i18n-elementtype-DataObject"></td></tr>
+												
+										
+										<tr><td> <a href="../elements/44349bc9.html" target="element"> Photon BBQ </a> </td><td class="i18n-elementtype-Device"></td></tr>
+												<tr><td> <a href="../elements/bdc209cd.html" target="element"> Photon App </a> </td><td class="i18n-elementtype-ApplicationComponent"></td></tr>
+										
+										<tr><td> <a href="../elements/0c743452.html" target="element"> Mobile device </a> </td><td class="i18n-elementtype-Device"></td></tr>
+												<tr><td> <a href="../elements/644b0a8e.html" target="element"> Mobile BBQ App </a> </td><td class="i18n-elementtype-ApplicationComponent"></td></tr>
+										
+										<tr><td> <a href="../elements/82e200ec.html" target="element"> Particle Cloud </a> </td><td class="i18n-elementtype-Device"></td></tr>
+												<tr><td> <a href="../elements/f2af68b5.html" target="element"> Particle Cloud Integration  </a> </td><td class="i18n-elementtype-ApplicationInterface"></td></tr>
+										
+										<tr><td> <a href="../elements/6620ef8c.html" target="element"> Web Browser </a> </td><td class="i18n-elementtype-Device"></td></tr>
+												<tr><td> <a href="../elements/142bda64.html" target="element"> BBQ Web App </a> </td><td class="i18n-elementtype-ApplicationComponent"></td></tr>
+										
+										<tr><td> <a href="../elements/e82ce9ad.html" target="element"> GoDaddy </a> </td><td class="i18n-elementtype-Device"></td></tr>
+												<tr><td> <a href="../elements/b7feec53.html" target="element"> HTML Pages </a> </td><td class="i18n-elementtype-Artifact"></td></tr>
+										
+
+							</tbody>
+						</table>
+					</div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
