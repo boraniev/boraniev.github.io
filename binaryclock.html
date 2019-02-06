@@ -1,8 +1,19 @@
-
 <button type="button" onclick="displayC1()">Try it</button>
 
-
-
+<br>
+<table border = 0 align = "center"> 
+<tr align = "center">
+<td>
+<b>
+<h1>
+Binary Clock
+</h1>
+<br>
+</b>
+</td>
+</tr>
+<tr>
+<td>
 <table border = 0  align = center >
 
 
@@ -30,20 +41,27 @@
 
     </tr>
 </table>
+</td>
+</tr>
+<tr align = "center">
+<td>
+<br>
+<br>
 <p id="clockr"></p>
+</td>
+</tr>
+</table>
+
 
 
 
 
 <script type="text/javascript">
-
 function displayC1(){
 	
 	window.setInterval(displayC,1000);
 	
 } 
-
-
 function displayC(){
 var binc;
 var regc;
@@ -61,7 +79,6 @@ while(i<5){
 	hbin="0"+hbin;
 	i++
 }
-
 mbin=m.toString(2);
 mbinlen=mbin.length;
 var i=mbinlen;
@@ -69,7 +86,6 @@ while(i<6){
 	mbin="0"+mbin;
 	i++
 }
-
 sbin=s.toString(2);
 sbinlen=sbin.length;
 var i=sbinlen;
@@ -77,64 +93,49 @@ while(i<6){
 	sbin="0"+sbin;
 	i++
 }
-
 binc=hbin+":"+mbin+":"+sbin
 regc=h+":"+m+":"+s
-
-
-
 document.getElementById("clockr").innerHTML = regc;
-
 if(sbin.charAt(sbin.length-1)=='1'){
 	document.getElementById("sec1").src="amberdot.jpg";
 	}else {
 	document.getElementById("sec1").src="whitedot.jpg";
 }
-
 if(sbin.charAt(sbin.length-2)=='1'){
 	document.getElementById("sec2").src="amberdot.jpg";
 	}else {
 	document.getElementById("sec2").src="whitedot.jpg";
 }
-
 if(sbin.charAt(sbin.length-3)=='1'){
 	document.getElementById("sec3").src="amberdot.jpg";
 	}else {
 	document.getElementById("sec3").src="whitedot.jpg";
 }
-
 if(sbin.charAt(sbin.length-4)=='1'){
 	document.getElementById("sec4").src="amberdot.jpg";
 	}else {
 	document.getElementById("sec4").src="whitedot.jpg";
 }
-
 if(sbin.charAt(sbin.length-5)=='1'){
 	document.getElementById("sec5").src="amberdot.jpg";
 	}else {
 	document.getElementById("sec5").src="whitedot.jpg";
 }
-
 if(sbin.charAt(sbin.length-6)=='1'){
 	document.getElementById("sec6").src="amberdot.jpg";
 	}else {
 	document.getElementById("sec6").src="whitedot.jpg";
 }
-
-
-
 if(mbin.charAt(mbin.length-1)=='1'){
 	document.getElementById("min1").src="amberdot.jpg";
 	}else {
 	document.getElementById("min1").src="whitedot.jpg";
 }
-
 if(mbin.charAt(mbin.length-2)=='1'){
 	document.getElementById("min2").src="amberdot.jpg";
 	}else {
 	document.getElementById("min2").src="whitedot.jpg";
 }
-
 if(mbin.charAt(mbin.length-3)=='1'){
 	document.getElementById("min3").src="amberdot.jpg";
 	}else {
@@ -145,54 +146,40 @@ if(mbin.charAt(mbin.length-4)=='1'){
 	}else {
 	document.getElementById("min4").src="whitedot.jpg";
 }
-
 if(mbin.charAt(mbin.length-5)=='1'){
 	document.getElementById("min5").src="amberdot.jpg";
 	}else {
 	document.getElementById("min5").src="whitedot.jpg";
 }
-
 if(mbin.charAt(mbin.length-6)=='1'){
 	document.getElementById("min6").src="amberdot.jpg";
 	}else {
 	document.getElementById("min6").src="whitedot.jpg";
 }
-
-
-
 if(hbin.charAt(hbin.length-1)=='1'){
 	document.getElementById("hou1").src="amberdot.jpg";
 	}else {
 	document.getElementById("hou1").src="whitedot.jpg";
 }
-
 if(hbin.charAt(hbin.length-2)=='1'){
 	document.getElementById("hou2").src="amberdot.jpg";
 	}else {
 	document.getElementById("hou2").src="whitedot.jpg";
 }
-
 if(hbin.charAt(hbin.length-3)=='1'){
 	document.getElementById("hou3").src="amberdot.jpg";
 	}else {
 	document.getElementById("hou3").src="whitedot.jpg";
 }
-
 if(hbin.charAt(hbin.length-4)=='1'){
 	document.getElementById("hou4").src="amberdot.jpg";
 	}else {
 	document.getElementById("hou4").src="whitedot.jpg";
 }
-
 if(hbin.charAt(hbin.length-5)=='1'){
 	document.getElementById("hou5").src="amberdot.jpg";
 	}else {
 	document.getElementById("hou5").src="whitedot.jpg";
 }
-
-
-
 }
-
-
 </script>
