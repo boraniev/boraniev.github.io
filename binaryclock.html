@@ -1,43 +1,77 @@
-<button type="button" onclick="displayC1()">Try it</button>
+<html>
+    <head>
+	<title>Binary Clock</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--stylesheet can be used to provide separate parameters per element. In this case height and width for the hour digits. -->
+	<style> 
+	#hou5 {
+		height: 60;
+		width:60;
+	}
+	#hou4 {
+		height: 60;
+		width:60;
+	}
+
+
+	#hou3 {
+		height: 60;
+		width:60;
+	}
+	#hou2 {
+		height: 60;
+		width:60;
+	}
+	#hou1 {
+		height: 60;
+		width:60;
+	}
+	</style>
+
+<!--Load the function to start the binary clock after the page is loaded.  -->
+    <body onload="displayC1()">
+
 
 <br>
-<table border = 0 align = "center"> 
-<tr align = "center">
+<!--set the display with the header and the clock digits. -->
+<table BGCOLOR="#006600" width=100%> 
+<tr align = "center" >
 <td>
-<b>
+<br>
+<font color="white">
 <h1>
 Binary Clock
 </h1>
+</font>
 <br>
-</b>
 </td>
 </tr>
 <tr>
 <td>
-<table border = 0  align = center >
+<table border = 0 align = "center" width >
 
 
     <tr>
 
-        <td colspan = 4><img id="hou5" src="whitedot.jpg" height=100 width=100</img></th>
-        <td colspan = 4><img id="hou4" src="whitedot.jpg" height=100 width=100</img></th>
-        <td colspan = 4><img id="hou3" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img id="hou2" src="whitedot.jpg" height=100 width=100</img></th>
-        <td colspan = 4><img id="hou1" src="whitedot.jpg" height=100 width=100</img></th>
-        <td colspan = 4><img src="twodots.jpg"  height=100 width=100</img></th>
-        <td colspan = 4><img id="min6" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img id="min5" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img id="min4" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img id="min3" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img id="min2" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img id="min1" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img src="twodots.jpg"  height=100 width=100</img></td>
-        <td colspan = 4><img id="sec6" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img id="sec5" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img id="sec4" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img id="sec3" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img id="sec2" src="whitedot.jpg" height=100 width=100</img></td>
-        <td colspan = 4><img id="sec1" src="whitedot.jpg" height=100 width=100</img></td>
+        <td><img id="hou5" src="whitedot.jpg" </img></td>
+        <td><img id="hou4" src="whitedot.jpg" </img></td>
+        <td><img id="hou3" src="whitedot.jpg"  </img></td>
+        <td><img id="hou2" src="whitedot.jpg" </img></td>
+        <td><img id="hou1" src="whitedot.jpg" </img></td>
+        <td><img src="twodotsv.jpg"   height=60 width=60</img></td>
+        <td ><img id="min6" src="whitedot.jpg" height=60 width=60</img></td>
+        <td ><img id="min5" src="whitedot.jpg" height=60 width=60</img></td>
+        <td ><img id="min4" src="whitedot.jpg" height=60 width=60</img></td>
+        <td ><img id="min3" src="whitedot.jpg" height=60 width=60</img></td>
+        <td ><img id="min2" src="whitedot.jpg" height=60 width=60</img></td>
+        <td ><img id="min1" src="whitedot.jpg" height=60 width=60</img></td>
+        <td ><img src="twodotsv.jpg"   height=60 width=60</img></td>
+        <td ><img id="sec6" src="whitedot.jpg" height=60 width=60</img></td>
+        <td ><img id="sec5" src="whitedot.jpg" height=60 width=60</img></td>
+        <td ><img id="sec4" src="whitedot.jpg" height=60 width=60</img></td>
+        <td ><img id="sec3" src="whitedot.jpg" height=60 width=60</img></td>
+        <td ><img id="sec2" src="whitedot.jpg" height=60 width=60</img></td>
+        <td ><img id="sec1" src="whitedot.jpg" height=60 width=60</img></td>
 
     </tr>
 </table>
@@ -46,8 +80,10 @@ Binary Clock
 <tr align = "center">
 <td>
 <br>
-<br>
+<font color="white">
 <p id="clockr"></p>
+</font>
+<br>
 </td>
 </tr>
 </table>
@@ -57,11 +93,13 @@ Binary Clock
 
 
 <script type="text/javascript">
+<!--Function that will start the update of the clock every second-->
 function displayC1(){
 	
 	window.setInterval(displayC,1000);
 	
 } 
+<!--The function that sets and displays the clock -->
 function displayC(){
 var binc;
 var regc;
@@ -183,3 +221,9 @@ if(hbin.charAt(hbin.length-5)=='1'){
 }
 }
 </script>
+
+
+
+</body>
+</html>
+
