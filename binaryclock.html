@@ -4,27 +4,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--stylesheet can be used to provide separate parameters per element. In this case height and width for the hour digits. -->
 	<style> 
-	#hou5 {
-		height: 60;
-		width:60;
-	}
-	#hou4 {
-		height: 60;
-		width:60;
+	:root {
+		--inith: 70;
+		--initv: 70;
 	}
 
-
-	#hou3 {
-		height: 60;
-		width:60;
-	}
-	#hou2 {
-		height: 60;
-		width:60;
-	}
-	#hou1 {
-		height: 60;
-		width:60;
+	#bincell {
+		height: 70;
+		width: 70;
+		height: var(--inith);
+		width: var(--initv);
 	}
 	</style>
 
@@ -48,30 +37,30 @@ Binary Clock
 </tr>
 <tr>
 <td>
-<table border = 0 align = "center" width >
+<table id="theclock" border = 0 align = "center" width >
 
 
     <tr>
 
-        <td><img id="hou5" src="whitedot.jpg" </img></td>
-        <td><img id="hou4" src="whitedot.jpg" </img></td>
-        <td><img id="hou3" src="whitedot.jpg"  </img></td>
-        <td><img id="hou2" src="whitedot.jpg" </img></td>
-        <td><img id="hou1" src="whitedot.jpg" </img></td>
-        <td><img src="twodotsv.jpg"   height=60 width=60</img></td>
-        <td ><img id="min6" src="whitedot.jpg" height=60 width=60</img></td>
-        <td ><img id="min5" src="whitedot.jpg" height=60 width=60</img></td>
-        <td ><img id="min4" src="whitedot.jpg" height=60 width=60</img></td>
-        <td ><img id="min3" src="whitedot.jpg" height=60 width=60</img></td>
-        <td ><img id="min2" src="whitedot.jpg" height=60 width=60</img></td>
-        <td ><img id="min1" src="whitedot.jpg" height=60 width=60</img></td>
-        <td ><img src="twodotsv.jpg"   height=60 width=60</img></td>
-        <td ><img id="sec6" src="whitedot.jpg" height=60 width=60</img></td>
-        <td ><img id="sec5" src="whitedot.jpg" height=60 width=60</img></td>
-        <td ><img id="sec4" src="whitedot.jpg" height=60 width=60</img></td>
-        <td ><img id="sec3" src="whitedot.jpg" height=60 width=60</img></td>
-        <td ><img id="sec2" src="whitedot.jpg" height=60 width=60</img></td>
-        <td ><img id="sec1" src="whitedot.jpg" height=60 width=60</img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="twodotsv.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="twodotsv.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
 
     </tr>
 </table>
@@ -86,13 +75,22 @@ Binary Clock
 <br>
 </td>
 </tr>
+<tr align = "center">
+<td>
+<br>
+<br>
+<form>
+  <input id="hSize" type="range" name="Size" min="40" max="100"><br>
+</form>
+
+<br>
+</td>
+</tr>
 </table>
 
 
-
-
-
 <script type="text/javascript">
+
 <!--Function that will start the update of the clock every second-->
 function displayC1(){
 	
@@ -134,90 +132,109 @@ while(i<6){
 binc=hbin+":"+mbin+":"+sbin
 regc=h+":"+m+":"+s
 document.getElementById("clockr").innerHTML = regc;
-if(sbin.charAt(sbin.length-1)=='1'){
-	document.getElementById("sec1").src="amberdot.jpg";
+var table = document.getElementById("theclock")
+for(tt=0;tt<19;tt++){
+	table.rows[0].cells[tt].style.setProperty("--inith",document.getElementById("hSize").value);
+	table.rows[0].cells[tt].style.setProperty("--initv",document.getElementById("hSize").value);
+}
+
+
+if(s%2==0){
+	table.rows[0].cells[12].innerHTML= '<img id="bincell" src="twodotsh.jpg" </img>';
 	}else {
-	document.getElementById("sec1").src="whitedot.jpg";
+	table.rows[0].cells[12].innerHTML= '<img id="bincell" src="twodotsv.jpg" </img>';
+}
+
+if(s%2==0){
+	table.rows[0].cells[5].innerHTML= '<img id="bincell" src="twodotsh.jpg" </img>';
+	}else {
+	table.rows[0].cells[5].innerHTML= '<img id="bincell" src="twodotsv.jpg" </img>';
+}
+if(sbin.charAt(sbin.length-1)=='1'){
+	table.rows[0].cells[18].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[18].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(sbin.charAt(sbin.length-2)=='1'){
-	document.getElementById("sec2").src="amberdot.jpg";
+	table.rows[0].cells[17].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("sec2").src="whitedot.jpg";
+	table.rows[0].cells[17].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(sbin.charAt(sbin.length-3)=='1'){
-	document.getElementById("sec3").src="amberdot.jpg";
+	table.rows[0].cells[16].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("sec3").src="whitedot.jpg";
+	table.rows[0].cells[16].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(sbin.charAt(sbin.length-4)=='1'){
-	document.getElementById("sec4").src="amberdot.jpg";
+	table.rows[0].cells[15].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("sec4").src="whitedot.jpg";
+	table.rows[0].cells[15].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(sbin.charAt(sbin.length-5)=='1'){
-	document.getElementById("sec5").src="amberdot.jpg";
+	table.rows[0].cells[14].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("sec5").src="whitedot.jpg";
+	table.rows[0].cells[14].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
+
 if(sbin.charAt(sbin.length-6)=='1'){
-	document.getElementById("sec6").src="amberdot.jpg";
+	table.rows[0].cells[13].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("sec6").src="whitedot.jpg";
+	table.rows[0].cells[13].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(mbin.charAt(mbin.length-1)=='1'){
-	document.getElementById("min1").src="amberdot.jpg";
+	table.rows[0].cells[11].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("min1").src="whitedot.jpg";
+	table.rows[0].cells[11].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(mbin.charAt(mbin.length-2)=='1'){
-	document.getElementById("min2").src="amberdot.jpg";
+	table.rows[0].cells[10].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("min2").src="whitedot.jpg";
+	table.rows[0].cells[10].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(mbin.charAt(mbin.length-3)=='1'){
-	document.getElementById("min3").src="amberdot.jpg";
+	table.rows[0].cells[9].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("min3").src="whitedot.jpg";
+	table.rows[0].cells[9].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(mbin.charAt(mbin.length-4)=='1'){
-	document.getElementById("min4").src="amberdot.jpg";
+	table.rows[0].cells[8].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("min4").src="whitedot.jpg";
+	table.rows[0].cells[8].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(mbin.charAt(mbin.length-5)=='1'){
-	document.getElementById("min5").src="amberdot.jpg";
+	table.rows[0].cells[7].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("min5").src="whitedot.jpg";
+	table.rows[0].cells[7].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
-if(mbin.charAt(mbin.length-6)=='1'){
-	document.getElementById("min6").src="amberdot.jpg";
+if(mbin.charAt(mbin.length-5)=='1'){
+	table.rows[0].cells[6].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("min6").src="whitedot.jpg";
+	table.rows[0].cells[6].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(hbin.charAt(hbin.length-1)=='1'){
-	document.getElementById("hou1").src="amberdot.jpg";
+	table.rows[0].cells[4].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("hou1").src="whitedot.jpg";
+	table.rows[0].cells[4].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(hbin.charAt(hbin.length-2)=='1'){
-	document.getElementById("hou2").src="amberdot.jpg";
+	table.rows[0].cells[3].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("hou2").src="whitedot.jpg";
+	table.rows[0].cells[3].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(hbin.charAt(hbin.length-3)=='1'){
-	document.getElementById("hou3").src="amberdot.jpg";
+	table.rows[0].cells[2].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("hou3").src="whitedot.jpg";
+	table.rows[0].cells[2].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(hbin.charAt(hbin.length-4)=='1'){
-	document.getElementById("hou4").src="amberdot.jpg";
+	table.rows[0].cells[1].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("hou4").src="whitedot.jpg";
+	table.rows[0].cells[1].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 if(hbin.charAt(hbin.length-5)=='1'){
-	document.getElementById("hou5").src="amberdot.jpg";
+	table.rows[0].cells[0].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
-	document.getElementById("hou5").src="whitedot.jpg";
+	table.rows[0].cells[0].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
 }
 </script>
