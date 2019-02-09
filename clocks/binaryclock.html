@@ -1,0 +1,247 @@
+<html>
+    <head>
+	<title>Binary Clock</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--stylesheet can be used to provide separate parameters per element. In this case height and width for the hour digits. -->
+	<style> 
+	:root {
+		--inith: 60;
+		--initv: 60;
+	}
+
+	#bincell {
+		height: 70;
+		width: 70;
+		height: var(--inith);
+		width: var(--initv);
+	}
+	</style>
+
+<!--Load the function to start the binary clock after the page is loaded.  -->
+    <body onload="displayC1()">
+
+
+<br>
+<!--set the display with the header and the clock digits. -->
+<table BGCOLOR="#006600" width=100%> 
+<tr align = "center" >
+<td>
+<br>
+<font color="white">
+<h1>
+Binary Clock
+</h1>
+</font>
+<br>
+</td>
+</tr>
+<tr align = "center">
+<td>
+<br>
+<br>
+<form>
+  <input id="hSize" type="range" name="Size" min="20" max="80"><br>
+</form>
+
+<br>
+</td>
+</tr>
+<tr>
+<td>
+<table id="theclock" border = 0 align = "center" width >
+
+
+    <tr>
+
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="twodotsv.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="twodotsv.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+
+    </tr>
+</table>
+</td>
+</tr>
+<tr align = "center">
+<td>
+<br>
+<font color="white">
+<p id="clockr"></p>
+</font>
+<br>
+</td>
+</tr>
+
+</table>
+
+
+<script type="text/javascript">
+
+<!--Function that will start the update of the clock every second-->
+function displayC1(){
+	
+	window.setInterval(displayC,1000);
+	
+} 
+<!--The function that sets and displays the clock -->
+function displayC(){
+var binc;
+var regc;
+var d = new Date();
+var h;
+var m;
+var s;
+h=d.getHours();
+m=d.getMinutes();
+s=d.getSeconds();
+hbin=h.toString(2);
+hbinlen=hbin.length;
+var i=hbinlen;
+while(i<5){
+	hbin="0"+hbin;
+	i++
+}
+mbin=m.toString(2);
+mbinlen=mbin.length;
+var i=mbinlen;
+while(i<6){
+	mbin="0"+mbin;
+	i++
+}
+sbin=s.toString(2);
+sbinlen=sbin.length;
+var i=sbinlen;
+while(i<6){
+	sbin="0"+sbin;
+	i++
+}
+binc=hbin+":"+mbin+":"+sbin
+regc=h+":"+m+":"+s
+document.getElementById("clockr").innerHTML = regc;
+var table = document.getElementById("theclock")
+for(tt=0;tt<19;tt++){
+	table.rows[0].cells[tt].style.setProperty("--inith",document.getElementById("hSize").value);
+	table.rows[0].cells[tt].style.setProperty("--initv",document.getElementById("hSize").value);
+}
+
+
+if(s%2==0){
+	table.rows[0].cells[12].innerHTML= '<img id="bincell" src="twodotsh.jpg" </img>';
+	}else {
+	table.rows[0].cells[12].innerHTML= '<img id="bincell" src="twodotsv.jpg" </img>';
+}
+
+if(s%2==0){
+	table.rows[0].cells[5].innerHTML= '<img id="bincell" src="twodotsh.jpg" </img>';
+	}else {
+	table.rows[0].cells[5].innerHTML= '<img id="bincell" src="twodotsv.jpg" </img>';
+}
+if(sbin.charAt(sbin.length-1)=='1'){
+	table.rows[0].cells[18].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[18].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(sbin.charAt(sbin.length-2)=='1'){
+	table.rows[0].cells[17].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[17].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(sbin.charAt(sbin.length-3)=='1'){
+	table.rows[0].cells[16].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[16].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(sbin.charAt(sbin.length-4)=='1'){
+	table.rows[0].cells[15].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[15].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(sbin.charAt(sbin.length-5)=='1'){
+	table.rows[0].cells[14].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[14].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+
+if(sbin.charAt(sbin.length-6)=='1'){
+	table.rows[0].cells[13].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[13].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(mbin.charAt(mbin.length-1)=='1'){
+	table.rows[0].cells[11].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[11].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(mbin.charAt(mbin.length-2)=='1'){
+	table.rows[0].cells[10].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[10].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(mbin.charAt(mbin.length-3)=='1'){
+	table.rows[0].cells[9].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[9].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(mbin.charAt(mbin.length-4)=='1'){
+	table.rows[0].cells[8].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[8].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(mbin.charAt(mbin.length-5)=='1'){
+	table.rows[0].cells[7].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[7].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(mbin.charAt(mbin.length-5)=='1'){
+	table.rows[0].cells[6].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[6].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(hbin.charAt(hbin.length-1)=='1'){
+	table.rows[0].cells[4].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[4].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(hbin.charAt(hbin.length-2)=='1'){
+	table.rows[0].cells[3].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[3].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(hbin.charAt(hbin.length-3)=='1'){
+	table.rows[0].cells[2].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[2].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(hbin.charAt(hbin.length-4)=='1'){
+	table.rows[0].cells[1].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[1].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+if(hbin.charAt(hbin.length-5)=='1'){
+	table.rows[0].cells[0].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
+	}else {
+	table.rows[0].cells[0].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
+}
+}
+</script>
+
+
+
+</body>
+</html>
+
