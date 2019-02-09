@@ -32,7 +32,7 @@
                     </td>
             </table>
         </td>
- 	>td>
+ 	<td>
         <img src="svetlo.png" width=1000>
         </td>
            
