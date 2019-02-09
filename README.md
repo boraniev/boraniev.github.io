@@ -3,12 +3,6 @@
 <html>
 
 <head> 
-<style>
-a:link {
-  color: white;
-}
-
-</style>	
 	
 	
 	
