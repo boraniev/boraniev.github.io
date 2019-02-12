@@ -1,9 +1,13 @@
 <html>
     <head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
 	<title>Binary Clock</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!--stylesheet can be used to provide separate parameters per element. In this case height and width for the hour digits. -->
-	<style> 
+    <!--stylesheet can be used to provide separate parameters per element. In this case height and width for the hour digits. -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">	
+    <style> 
 	:root {
 		--inith: 60;
 		--initv: 60;
@@ -15,22 +19,44 @@
 		height: var(--inith);
 		width: var(--initv);
 	}
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
 	</style>
-
+    <link href="../cover.css" rel="stylesheet">
+ </head>
 <!--Load the function to start the binary clock after the page is loaded.  -->
-    <body onload="displayC1()">
 
+<body onload="displayC1()">
+ <div class="cover-container d-flex w-50 h-50 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">Binary Clock</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link active" href="../index.html">Home</a>
+        <a class="nav-link" href="#">Binary Clock</a>
+        <a class="nav-link" href="../bbqiot/bbqiot.html">BBQIoT</a>
+      </nav>
+    </div>
+  </header>
 
 <br>
 <!--set the display with the header and the clock digits. -->
-<table BGCOLOR="#006600" width=100%> 
+<main role="main" class="inner cover">
+<div class="container">
+<table BGCOLOR="#003300" width=100%> 
 <tr align = "center" >
 <td>
 <br>
 <font color="white">
-<h1>
-Binary Clock
-</h1>
+
 </font>
 <br>
 </td>
@@ -44,11 +70,11 @@ Binary Clock
 </form>
 
 <br>
-</td>
+</td
 </tr>
 <tr>
 <td>
-<table id="theclock" border = 0 align = "center" width >
+<table id="theclock" border = 10 align="center" width>
 
 
     <tr>
@@ -88,8 +114,8 @@ Binary Clock
 </tr>
 
 </table>
-
-
+</div>
+</main>
 <script type="text/javascript">
 
 <!--Function that will start the update of the clock every second-->
@@ -241,7 +267,7 @@ if(hbin.charAt(hbin.length-5)=='1'){
 </script>
 
 
-
+</div>
 </body>
 </html>
 
