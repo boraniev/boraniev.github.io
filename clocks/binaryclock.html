@@ -15,24 +15,21 @@
         	font-size: 1.125rem;
 	        text-anchor: middle;
 	      }
-
 	@media (min-width: 768px) {
         	.bd-placeholder-img-lg {
 	          font-size: 3.5rem;
         	}
 	}
 	:root {
-		--inith: 30;
-		--initv: 30;
+		--inith: 60;
+		--initv: 60;
 	}
-
 	#bincell {
-		height: 30;
-		width: 30;
+		height: 60;
+		width: 60;
 		height: var(--inith);
 		width: var(--initv);
 	}
-
     
 	</style>
 
@@ -58,7 +55,8 @@
 <!--set the display with the header and the clock digits. -->
 <main role="main" class="inner cover">
 
-<table BGCOLOR="#003300" border = 0 width=80%> 
+<tbody>
+<table class="table"  > 
 <tr>
 <td align="center">
 <br>
@@ -74,7 +72,7 @@
 
 <br>
 <form>
-  <input id="hSize" type="range" name="Size" min="30" max="30"><br>
+  <input id="hSize" type="range" name="Size" min="30" max="80"><br>
 </form>
 <br>
 </td
@@ -83,7 +81,7 @@
 <tr>
 <td>
 
-<table id="theclock" border = 0 >
+<table class="table"   id="theclock" border = 0 >
 
 
     <tr>
@@ -123,7 +121,7 @@
 <br>
 </td>
 </tr>
-
+</tbody>
 </table>
 </main>
 
@@ -185,7 +183,6 @@ if(s%2==0){
 	}else {
 	table.rows[0].cells[12].innerHTML= '<img id="bincell" src="twodotsv.jpg" </img>';
 }
-
 if(s%2==0){
 	table.rows[0].cells[5].innerHTML= '<img id="bincell" src="twodotsh.jpg" </img>';
 	}else {
@@ -216,7 +213,6 @@ if(sbin.charAt(sbin.length-5)=='1'){
 	}else {
 	table.rows[0].cells[14].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
-
 if(sbin.charAt(sbin.length-6)=='1'){
 	table.rows[0].cells[13].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
 	}else {
@@ -284,4 +280,3 @@ if(hbin.charAt(hbin.length-5)=='1'){
 
 </body>
 </html>
-
