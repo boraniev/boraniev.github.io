@@ -1,25 +1,9 @@
 <html BGCOLOR="#000000">
     <head>
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Up Side Down">
-    <title>Up Side Down</title>
-
-    <!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
 
     <style> 
-	.bd-placeholder-img {
-        	font-size: 1.125rem;
-	        text-anchor: middle;
-	      }
-	@media (min-width: 768px) {
-        	.bd-placeholder-img-lg {
-	          font-size: 3.5rem;
-        	}
-	}
+
 	:root {
 		--inith: 60;
 		--initv: 60;
@@ -33,30 +17,28 @@
     
 	</style>
 
-<link href="../cover.css" rel="stylesheet">    
+   
 </head>
 <!--Load the function to start the binary clock after the page is loaded.  -->
 
-<body  onload="displayC1()" class="text-center"> 
+<body  onload="displayC1()" bgcolor="#000000"> 
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column"> 
 
-<header class="masthead mb-auto">
-    <div class="inner">
-      <h3 class="masthead-brand">Up Side Down</h3>
-      <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link" href="../index.html">Home</a>
-        <a class="nav-link active" href="#">Binary Clock</a>
-        <a class="nav-link" href="../bbqiot/bbqiot.html">BBQIoT</a>
-      </nav>
-    </div>
+<header>
+<center>
+    <font color="white">
+      <h3>Up Side Down </h3>
+</font>
+        
+            
+ </center>   
   </header>
 <br>
 
 <!--set the display with the header and the clock digits. -->
-<main role="main" class="inner cover">
-
-<tbody>
-<table class="table"  > 
+<main">
+<center>
+<table  allign="center" width=800 > 
 <tr>
 <td align="center">
 <br>
@@ -66,22 +48,25 @@
 <br>
 </td>
 </tr>
-<tr align = "center">
+<tr>
 <td>
 <br>
-
 <br>
 <form>
-  <input id="hSize" type="range" name="Size" min="30" max="80"><br>
+<center>
+<font color="white">
+Adjust the size of the clock </font> <input id="hSize" type="range" name="Size" min="30" max="80"><br>
 </form>
+</center>
 <br>
 </td
 </tr>
-
+</table>
+<table  >
 <tr>
 <td>
 
-<table class="table"   id="theclock" border = 0 >
+<table   id="theclock" border = 0 align = "center" width=100%>
 
 
     <tr>
@@ -121,15 +106,16 @@
 <br>
 </td>
 </tr>
-</tbody>
+
 </table>
+<center>
 </main>
 
-<footer class="mastfoot mt-auto">
-    <div class="inner">
-      <p><a href="https://github.com/boraniev/boraniev.github.io">Github repository</a></p>
-    </div>
-  </footer>
+<footer>
+   
+<center>       <p><a href="https://github.com/boraniev/boraniev.github.io">Github repository</a></p><bd><a href="../index.html">Home </a>
+  </center> 
+</footer>
 
 <script type="text/javascript">
 <!--Function that will start the update of the clock every second-->
