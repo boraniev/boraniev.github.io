@@ -1,3 +1,4 @@
+
 <html BGCOLOR="#000000">
     <head>
 
@@ -13,6 +14,18 @@
 		width: 60;
 		height: var(--inith);
 		width: var(--initv);
+	}
+	#hexa {
+		font-family:'Courier New';
+		font-size: 80px;
+
+
+	}
+	#clockr {
+		font-family:'Courier New';
+		font-size: 80px;
+
+
 	}
     
 	</style>
@@ -97,13 +110,12 @@ Adjust the size of the clock </font> <input id="hSize" type="range" name="Size" 
 </tr>
 <tr align = "center">
 <td>
-<br>
 <font color="white">
-<p id="clockr"></p>
-<br>
+Decimal <p  id="clockr"></p> 
 
+Hexadecimal
+<p  id="hexa"></p>
 </font>
-<br>
 </td>
 </tr>
 
@@ -127,16 +139,21 @@ function displayC1(){
 <!--The function that sets and displays the clock -->
 function displayC(){
 var binc;
+var hexdc;
 var regc;
 var d = new Date();
 var h;
 var m;
 var s;
+var secfromstart;
 h=d.getHours();
 m=d.getMinutes();
 s=d.getSeconds();
 hbin=h.toString(2);
 hbinlen=hbin.length;
+secfromstart=d.getTime()/1000;
+secfromstart=parseInt(secfromstart);
+hexdc=secfromstart.toString(16);
 var i=hbinlen;
 while(i<5){
 	hbin="0"+hbin;
@@ -158,7 +175,12 @@ while(i<6){
 }
 binc=hbin+":"+mbin+":"+sbin
 regc=h+":"+m+":"+s
+
 document.getElementById("clockr").innerHTML = regc;
+document.getElementById("hexa").innerHTML = h.toString(16)+":"+m.toString(16)+":"+s.toString(16); 
+var t22=document.getElementById("hSize").value+"px"
+
+
 var table = document.getElementById("theclock")
 for(tt=0;tt<19;tt++){
 	table.rows[0].cells[tt].style.setProperty("--inith",document.getElementById("hSize").value);
