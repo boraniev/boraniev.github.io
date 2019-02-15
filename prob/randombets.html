@@ -62,7 +62,7 @@ function calculate() {
 console.log("total interactions " +total+" Wealth "+totalwealth+" Ruins "+totalruin+" out of "+indiv);
 var cost=g*p-l*(1-p);
 var average=totalwealth/(indiv-totalruin);
-document.getElementById("inito").innerHTML = "Total bets " +total+" out of "+ indiv*inter+". Total Wealth was "+totalwealth+". Number of Ruins (individuals ran out of money before before the series was over) is   "+totalruin+" out of "+indiv+". The cost of the bet was "+ cost+" and  maximum accumulated wealth by an individual was  "+ maxwealth +" while average wealth for all participants was "+average;
+document.getElementById("inito").innerHTML = "Total bets " +total+" out of "+ indiv*inter+". Total Wealth was "+totalwealth+". Number of Ruins (individuals ran out of money before before the series was over) is   "+totalruin+" out of "+indiv+". The cost of the bet was "+ cost+" and  maximum accumulated wealth by an individual was  "+ maxwealth +" while average wealth for remainin participants is "+average;
 
 }
 
