@@ -10,6 +10,7 @@ function calculate() {
 	var totalwealth=0;
 	var maxwealth=0;
 	var totalruin=0;
+    var probruin=0;
 	var all=[];
 	var g=parseFloat(document.getElementById("gain1").value);
 	var l=parseFloat(document.getElementById("lost1").value);
@@ -21,9 +22,9 @@ function calculate() {
 	var flag;
 	var interlos;
 	var ruin=0;
-	for(countpeople=0;countpeople<indiv;countpeople++){
+	for(countpeople=1;countpeople<=indiv;countpeople++){
 	one=[];	
-		for(count=0;count<=inter;count++) {
+		for(count=1;count<=inter;count++) {
 
 			var rr=Math.random();
 			if(i<=0) {
@@ -45,7 +46,6 @@ function calculate() {
 			total++;
 
 			}
-
 		document.getElementById("inito").innerHTML = c +" "+count+"  "+ruin+" "+countpeople;
 		}
 
@@ -54,19 +54,31 @@ function calculate() {
 	if(c<=0){ totalruin++;}
 	all[countpeople]=c;
 	count=0;
-	document.getElementById("lista").innerHTML = countpeople;
+	
 	var one=[];
 	var i=parseFloat(document.getElementById("init1").value);
 	}
-
 console.log("total interactions " +total+" Wealth "+totalwealth+" Ruins "+totalruin+" out of "+indiv);
 var cost=g*p-l*(1-p);
 var average=totalwealth/(indiv-totalruin);
 document.getElementById("inito").innerHTML = "Total bets " +total+" out of "+ indiv*inter+". Total Wealth was "+totalwealth+". Number of Ruins (individuals ran out of money before before the series was over) is   "+totalruin+" out of "+indiv+". The cost of the bet was "+ cost+" and  maximum accumulated wealth by an individual was  "+ maxwealth +" while average wealth for remainin participants is "+average;
 
+probruin=(factorial(inter)/(factorial(parseInt(inter/2+i-1))*factorial(inter-parseInt(inter/2-i+1))))*Math.pow(p,inter-i)*Math.pow(1-p,inter-inter+i);
+document.getElementById("lista").innerHTML = probruin + " " +factorial(inter-parseInt(inter/2-i+1))+" "+parseInt(inter/2-i+1);
+
 }
 
 
+
+function factorial (n) {
+  var tot=1;
+  if (n == 0 || n == 1)
+    return 1;
+  for(a=1;a<=n;a++){
+         tot=tot*a;
+    }
+  return tot; 
+} 
 </script>
 
 </head>
@@ -76,7 +88,7 @@ document.getElementById("inito").innerHTML = "Total bets " +total+" out of "+ in
 <div align="center">
 <form >
   Initial:
-  <input id="init1" type="text"  name="initial" value=100>
+  <input id="init1" type="text"  name="initial" value=2>
   <br>
   Win:
   <input id="gain1" type="text" name="gain" value=1>
@@ -90,7 +102,7 @@ document.getElementById("inito").innerHTML = "Total bets " +total+" out of "+ in
   How many individuals:
   <input id="individ" type="text"  name="individ" value=100>
   How many interactions:
-  <input id="interac" type="text"  name="interac" value=100>
+  <input id="interac" type="text"  name="interac" value=2>
 </form> 
 <button onclick="calculate()">Calculate</button>
 <p id="inito"> </p> 
