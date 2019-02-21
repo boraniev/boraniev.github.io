@@ -1,19 +1,134 @@
 
-<html lang="en">
+<html BGCOLOR="#000000">
     <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Up Side Down">
-    <title>Boraniev</title>
 
-    <!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <style> 
+
+	:root {
+		--inith: 60;
+		--initv: 60;
+	}
+	#bincell {
+		height: 60;
+		width: 60;
+		height: var(--inith);
+		width: var(--initv);
+	}
+	#hexa {
+		font-family:'Courier New';
+		font-size: 20px;
+
+
+	}
+	#clockr {
+		font-family:'Courier New';
+		font-size: 20px;
+
+
+	}
+    
+	</style>
+
+   
+</head>
+<!--Load the function to start the binary clock after the page is loaded.  -->
+
+<body  onload="displayC1()" bgcolor="#000000"> 
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column"> 
+
+<header>
+<center>
+    <font color="white">
+      <h3>Up Side Down </h3>
+</font>
+        
+            
+ </center>   
+  </header>
+<br>
+
+<!--set the display with the header and the clock digits. -->
+<main">
+<center>
+<table  allign="center" width=800 > 
+<tr>
+<td align="center">
+<br>
+<font color="white">
+<h1>Binary clock</h1>
+</font>
+<br>
+</td>
+</tr>
+<tr>
+<td>
+<br>
+<br>
+<form>
+<center>
+<font color="white">
+Adjust the size of the clock </font> <input id="hSize" type="range" name="Size" min="30" max="80"><br>
+</form>
+</center>
+<br>
+</td
+</tr>
+</table>
+<table  >
+<tr>
+<td>
+
+<table   id="theclock" border = 0 align = "center" width=100%>
+
+
+    <tr>
+
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="twodotsv.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="twodotsv.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+        <td><img id="bincell" src="whitedot.jpg" </img></td>
+
+    </tr>
+</table>
+</td>
+</tr>
+<tr align = "center">
+<td>
+<font color="white">
+Decimal <p  id="clockr"></p> 
+ Hexadecimal <p  id="hexa"></p> 
+</font>
+</td>
+</tr>
+</table>
+<center>
+</main>
+
+<footer>
+   
+<center>       <p><a href="https://github.com/boraniev/boraniev.github.io">Github repository</a></p><bd><a href="../index.html">Home </a>
+  </center> 
+</footer>
 
 <script type="text/javascript">
 <!--Function that will start the update of the clock every second-->
 function displayC1(){
-
 	
 	window.setInterval(displayC,1000);
 	
@@ -105,7 +220,6 @@ if(sbin.charAt(sbin.length-5)=='1'){
 }
 if(sbin.charAt(sbin.length-6)=='1'){
 	table.rows[0].cells[13].innerHTML= '<img id="bincell" src="amberdot.jpg" </img>';
-
 	}else {
 	table.rows[0].cells[13].innerHTML= '<img id="bincell" src="whitedot.jpg" </img>';
 }
@@ -166,146 +280,6 @@ if(hbin.charAt(hbin.length-5)=='1'){
 }
 }
 </script>
-
-    <style> 
-
-	:root {
-		--inith: 60;
-		--initv: 60;
-	}
-	#bincell {
-		height: 60;
-		width: 60;
-		height: var(--inith);
-		width: var(--initv);
-	}
-	#hexa {
-		font-family:'Courier New';
-		font-size: 20px;
-
-
-	}
-	#clockr {
-		font-family:'Courier New';
-		font-size: 20px;
-
-
-	}
-    .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    
-	</style>
-
-   
-</head>
-<!--Load the function to start the binary clock after the page is loaded.  -->
-
-<body  class="text-center" onload="displayC1()"  > 
-<div class="cover-containerbc d-flex w-100 h-100 p-3 mx-auto flex-column"> 
-
-<header class="masthead mb-auto" >
-    <div class="inner">
-      <h3 class="masthead-brand">Up Side Down</h3>
-      <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link " href="../index.html">Home</a>
-        <a class="nav-link" href="../clocks/binaryclock.html">Binary Clock</a>
-        <a class="nav-link active"  href="#">BBQIoT</a>
-        <a class="nav-link" href="../prob/randombets1.html">Probability</a>
-        
-      </nav>
-    </div>
-  </header>
-<br>
-
-<!--set the display with the header and the clock digits. -->
-<main role="main" class="inner cover">
-<center>
-<table  allign="center" width=800 > 
-<tr>
-<td align="center">
-<br>
-<font color="white">
-<h1>Binary clock</h1>
-</font>
-<br>
-</td>
-</tr>
-<tr>
-<td>
-<br>
-<br>
-<form>
-<center>
-<font color="white">
-Adjust the size of the clock </font> <input id="hSize" type="range" name="Size" min="30" max="80"><br>
-</form>
-</center>
-<br>
-</td
-</tr>
-</table>
-<table  >
-<tr>
-<td>
-
-<table   id="theclock" border = 0 align = "center" width=100%>
-
-
-    <tr>
-
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="twodotsv.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="twodotsv.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-        <td><img id="bincell" src="whitedot.jpg" </img></td>
-
-    </tr>
-</table>
-</td>
-</tr>
-<tr align = "center">
-<td>
-<font color="white">
-Decimal <p  id="clockr"></p> 
- Hexadecimal <p  id="hexa"></p> 
-</font>
-</td>
-</tr>
-</table>
-<center>
-</main>
-
-<footer>
-   
- <footer class="mastfoot mt-auto">
-    <div class="inner">
-      <p><a href="https://github.com/boraniev/boraniev.github.io">Github repository</a></p>
-    </div>
-  </footer>
-
-
 
 
 
