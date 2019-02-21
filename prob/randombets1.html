@@ -113,6 +113,7 @@ function factorial (n) {
   <main role="main" class="inner cover">
 
 <div align="center">
+
 <form >
 Challenge: The game is coin toss and the bet is 1 dollar. I have initially n dollars and committed to play m rounds. What are my chances of ruin? <br>
 <br>
@@ -121,7 +122,7 @@ Using pascal’s triangle, I can calculate the probabilities, but it is a cumber
 <br>Here how it looks for n=2 and m = 5.<br> <br>
 
 <img id="bincell" src="pascalstri.PNG" class="img-fluid" </img>
-<br>You can test it with below (the initial parameters are set as in the example above). <br><br><br>
+<br>You can create a simulation with the script below (the initial parameters are set as in the example above).the simulation is based on the javascript random function. You can change every parameter of the simulation and please not that if you run too many rounds with a lot of individuals it might get slow.   <br><br><br>
 
   Initial amouint of money:
   <input id="init1" type="text"  name="Initial amouint of money" value=2>
@@ -129,10 +130,10 @@ Using pascal’s triangle, I can calculate the probabilities, but it is a cumber
   Win:
   <input id="gain1" type="text" name="Win" value=1>
   <br>
-  Loss:
+  Los:
   <input id="lost1" type="text" name="Loss" value=1>
   <br>
-  Probability of winning :
+  Probability of winning:
   <input id="prob1" type="text" name="Probability of winning" value=50>
   <br>
   How many individuals are playing:
@@ -146,18 +147,9 @@ Using pascal’s triangle, I can calculate the probabilities, but it is a cumber
 <br>
 <br>
 <p id="lista"> </p>
- <div id="curve_chart" style="width: 900px; height: 500px"></div>
+
 
 <div>
-
-
-
-
-
-
-
-
-
 
 
   </main>
