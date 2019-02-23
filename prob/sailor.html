@@ -1,0 +1,160 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+<script>
+function calculate() {
+	var total=0;
+	var totalwealth=0;
+	var maxwealth=0;
+	var totalruin=0;
+    var probruin=0;
+	var all=[];
+document.getElementById("inito").innerHTML = " ";
+
+	var g=parseFloat(document.getElementById("gain1").value);
+	var l=parseFloat(document.getElementById("lost1").value);
+	var p=parseFloat(document.getElementById("prob1").value)/100;
+	var i=parseFloat(document.getElementById("init1").value);
+	var indiv=parseFloat(document.getElementById("individ").value);
+	var inter=parseFloat(document.getElementById("interac").value);
+	var c;
+	var flag;
+	var interlos;
+	var ruin=0;
+	for(countpeople=1;countpeople<=indiv;countpeople++){
+	one=[];	
+		for(count=1;count<=inter;count++) {
+			var rr=Math.random();
+			if(i<=0) {
+				i=0;
+				c=i;
+				one.push(c);
+				
+			}else{
+				if(rr < p) {
+					flag=1;
+				} else {
+					flag=0;
+				}
+			interlos=flag*g+(flag-1)*l;
+			c=i+interlos;
+			i=c;
+			ruin=count;
+			one.push(c);
+			total++;
+			}
+		document.getElementById("inito").innerHTML = c +" "+count+"  "+ruin+" "+countpeople;
+		}
+	if(maxwealth<c){maxwealth=c};
+	totalwealth=totalwealth+c;
+	if(c<=0){ totalruin++;}
+	all[countpeople]=c;
+	count=0;
+	
+	var one=[];
+	var i=parseFloat(document.getElementById("init1").value);
+	}
+
+var cost=g*p-l*(1-p);
+var average=totalwealth/(indiv-totalruin);
+// document.getElementById("inito").innerHTML = "Total bets " +total+" out of "+ indiv*inter+". Total Wealth was "+totalwealth+". Number of Ruins (individuals ran out of money before before the series was over) is   "+totalruin+" out of "+indiv+". The cost of the bet was "+ cost+" and  maximum accumulated wealth by an individual was  "+ maxwealth +" while average wealth for remainin participants is "+average;
+probruin=(factorial(inter)/(factorial(parseInt(inter/2+i-1))*factorial(inter-parseInt(inter/2-i+1))))*Math.pow(p,inter-i)*Math.pow(1-p,inter-inter+i);
+// document.getElementById("lista").innerHTML = probruin + " " +factorial(inter-parseInt(inter/2-i+1))+" "+parseInt(inter/2-i+1); 
+
+document.getElementById("inito").innerHTML = "Number of Ruins (Sailor stepped over the edge) is   "+totalruin+" out of "+indiv+".";
+}
+function factorial (n) {
+  var tot=1;
+  if (n == 0 || n == 1)
+    return 1;
+  for(a=1;a<=n;a++){
+         tot=tot*a;
+    }
+  return tot; 
+} 
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Up Side Down">
+    <title>Up Side Down</title>
+
+    <!-- Bootstrap core CSS -->
+<link href="../css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="../cover.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">Up Side Down</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link " href="../index.html">Home</a>
+        
+      </nav>
+    </div>
+  </header>
+
+  <main role="main" class="inner cover">
+
+<div align="center">
+
+<form >
+<br>
+Challenge: A drunken sailor stands n steps from the edge and takes random steps toward or away from the edge. The probability of the step toward the edge is p away from it is 1-p. What are the chances that the sailor will survive after m steps.<br>
+<br>
+<br>You can create a simulation with the script below.The simulation is based on the javascript random function. You can change every parameter of the simulation and please note that if you run too many rounds and too many times it might get slow.   <br><br><br>
+
+  Initial distance from the edge in steps (n):
+  <input id="init1" type="text"  name="Steps" value=10>
+  <br>
+  Steps toward the edge in one round: 
+  <input id="gain1" type="text" name="Win" value=1>
+  <br>
+  Steps away from the edge in one round: 
+  <input id="lost1" type="text" name="Loss" value=1>
+  <br>
+  Probability for a step toward the edge:
+  <input id="prob1" type="text" name="Probability of winning" value=50>
+  <br>
+  How many times you want to run the simlation:
+  <input id="individ" type="text"  name="individ" value=1000>
+	<br>
+  How many rounds in a sumulation (m):
+  <input id="interac" type="text"  name="interac" value=100>
+</form> 
+<button onclick="calculate()">Calculate</button>
+<p id="inito"> </p> 
+<br>
+<br>
+<p id="lista"> </p>
+
+
+<div>
+
+
+  </main>
+
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p><a href="https://github.com/boraniev/boraniev.github.io">Github repository</a></p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
