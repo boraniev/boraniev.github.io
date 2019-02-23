@@ -14,7 +14,7 @@ document.getElementById("inito").innerHTML = " ";
 
 	var g=parseFloat(document.getElementById("gain1").value);
 	var l=parseFloat(document.getElementById("lost1").value);
-	var p=parseFloat(document.getElementById("prob1").value)/100;
+	var p=1-parseFloat(document.getElementById("prob1").value)/100;
 	var i=parseFloat(document.getElementById("init1").value);
 	var indiv=parseFloat(document.getElementById("individ").value);
 	var inter=parseFloat(document.getElementById("interac").value);
