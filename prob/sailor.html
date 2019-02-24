@@ -62,7 +62,7 @@ var average=totalwealth/(indiv-totalruin);
 probruin=(factorial(inter)/(factorial(parseInt(inter/2+i-1))*factorial(inter-parseInt(inter/2-i+1))))*Math.pow(p,inter-i)*Math.pow(1-p,inter-inter+i);
 // document.getElementById("lista").innerHTML = probruin + " " +factorial(inter-parseInt(inter/2-i+1))+" "+parseInt(inter/2-i+1); 
 var probsur=1-totalruin/indiv;
-document.getElementById("inito").innerHTML = "Number of Ruins (Sailor stepped over the edge) is   "+totalruin+" out of "+indiv+". The probability that he will survie is "+probsur+".";
+document.getElementById("inito").innerHTML = "Number of Ruins (Sailor stepped over the edge) is   "+totalruin+" out of "+indiv+". The probability that he will survie is "+probsur.toFixed(2)+".";
 }
 function factorial (n) {
   var tot=1;
