@@ -61,8 +61,8 @@ var average=totalwealth/(indiv-totalruin);
 // document.getElementById("inito").innerHTML = "Total bets " +total+" out of "+ indiv*inter+". Total Wealth was "+totalwealth+". Number of Ruins (individuals ran out of money before before the series was over) is   "+totalruin+" out of "+indiv+". The cost of the bet was "+ cost+" and  maximum accumulated wealth by an individual was  "+ maxwealth +" while average wealth for remainin participants is "+average;
 probruin=(factorial(inter)/(factorial(parseInt(inter/2+i-1))*factorial(inter-parseInt(inter/2-i+1))))*Math.pow(p,inter-i)*Math.pow(1-p,inter-inter+i);
 // document.getElementById("lista").innerHTML = probruin + " " +factorial(inter-parseInt(inter/2-i+1))+" "+parseInt(inter/2-i+1); 
-
-document.getElementById("inito").innerHTML = "Number of Ruins (Sailor stepped over the edge) is   "+totalruin+" out of "+indiv+".";
+var probsur=1-totalruin/indiv;
+document.getElementById("inito").innerHTML = "Number of Ruins (Sailor stepped over the edge) is   "+totalruin+" out of "+indiv+". The probability that he will survie is "+probsur+".";
 }
 function factorial (n) {
   var tot=1;
