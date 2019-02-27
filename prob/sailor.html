@@ -14,7 +14,7 @@ document.getElementById("inito").innerHTML = " ";
 
 	var g=parseFloat(document.getElementById("gain1").value);
 	var l=parseFloat(document.getElementById("lost1").value);
-	var p=1-parseFloat(document.getElementById("prob1").value)/100;
+	var p=parseFloat(document.getElementById("prob1").value)/100;
 	var i=parseFloat(document.getElementById("init1").value);
 	var indiv=parseFloat(document.getElementById("individ").value);
 	var inter=parseFloat(document.getElementById("interac").value);
@@ -61,9 +61,17 @@ var average=totalwealth/(indiv-totalruin);
 // document.getElementById("inito").innerHTML = "Total bets " +total+" out of "+ indiv*inter+". Total Wealth was "+totalwealth+". Number of Ruins (individuals ran out of money before before the series was over) is   "+totalruin+" out of "+indiv+". The cost of the bet was "+ cost+" and  maximum accumulated wealth by an individual was  "+ maxwealth +" while average wealth for remainin participants is "+average;
 probruin=(factorial(inter)/(factorial(parseInt(inter/2+i-1))*factorial(inter-parseInt(inter/2-i+1))))*Math.pow(p,inter-i)*Math.pow(1-p,inter-inter+i);
 // document.getElementById("lista").innerHTML = probruin + " " +factorial(inter-parseInt(inter/2-i+1))+" "+parseInt(inter/2-i+1); 
-var probsur=1-totalruin/indiv;
-document.getElementById("inito").innerHTML = "Number of Ruins (Sailor stepped over the edge) is   "+totalruin+" out of "+indiv+". The probability that he will survie is "+probsur.toFixed(2)+".";
+
+document.getElementById("inito").innerHTML = "Number of Ruins (Sailor stepped over the edge) is   "+totalruin+" out of "+indiv+".";
+
+var suma=0;
+for(k=0;k<=((inter-i)/2);k++){
+    suma=suma+Math.pow(2,(inter-i-2*k))*Math.pow(i,k);
+    console.log(suma+" "+k+" "+(inter-i-2*k)+" "+((inter-i)));
 }
+document.getElementById("lista").innerHTML = "Suma    "+suma+" total is  "+Math.pow(2,inter)+". probability is "+suma/Math.pow(2,inter)*100;
+}
+
 function factorial (n) {
   var tot=1;
   if (n == 0 || n == 1)
@@ -121,22 +129,22 @@ Challenge: A drunken sailor stands n steps from the edge and takes random steps 
 <br>You can create a simulation with the script below.The simulation is based on the javascript random function. You can change every parameter of the simulation and please note that if you run too many rounds and too many times it might get slow.   <br><br><br>
 
   Initial distance from the edge in steps (n):
-  <input id="init1" type="text"  name="Steps" value=10>
+  <input id="init1" type="text"  name="Steps" value=2>
   <br>
   Steps toward the edge in one round: 
-  <input id="lost1" type="text" name="Win" value=1>
+  <input id="gain1" type="text" name="Win" value=1>
   <br>
   Steps away from the edge in one round: 
-  <input id="gain1" type="text" name="Loss" value=1>
+  <input id="lost1" type="text" name="Loss" value=1>
   <br>
-  Probability for a step toward the edge (%):
+  Probability for a step toward the edge:
   <input id="prob1" type="text" name="Probability of winning" value=50>
   <br>
   How many times you want to run the simlation:
   <input id="individ" type="text"  name="individ" value=1000>
 	<br>
   How many rounds in a sumulation (m):
-  <input id="interac" type="text"  name="interac" value=100>
+  <input id="interac" type="text"  name="interac" value=4>
 </form> 
 <button onclick="calculate()">Calculate</button>
 <p id="inito"> </p> 
