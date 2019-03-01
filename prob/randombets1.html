@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -53,13 +52,11 @@ function calculate() {
 	var one=[];
 	var i=parseFloat(document.getElementById("init1").value);
 	}
-
 var cost=g*p-l*(1-p);
 var average=totalwealth/(indiv-totalruin);
 // document.getElementById("inito").innerHTML = "Total bets " +total+" out of "+ indiv*inter+". Total Wealth was "+totalwealth+". Number of Ruins (individuals ran out of money before before the series was over) is   "+totalruin+" out of "+indiv+". The cost of the bet was "+ cost+" and  maximum accumulated wealth by an individual was  "+ maxwealth +" while average wealth for remainin participants is "+average;
 probruin=(factorial(inter)/(factorial(parseInt(inter/2+i-1))*factorial(inter-parseInt(inter/2-i+1))))*Math.pow(p,inter-i)*Math.pow(1-p,inter-inter+i);
 // document.getElementById("lista").innerHTML = probruin + " " +factorial(inter-parseInt(inter/2-i+1))+" "+parseInt(inter/2-i+1); 
-
 document.getElementById("inito").innerHTML = "Number of Ruins (individuals ran out of money before before the series was over) is   "+totalruin+" out of "+indiv+".";
 }
 function factorial (n) {
@@ -117,7 +114,7 @@ Challenge: The game is coin toss and the bet is 1 dollar. I have initially n dol
 <br>
 Using pascal’s triangle, I can calculate the probabilities, but it is a cumbersome and messy process. <br>
 
-<br>Here how it looks for n=2 and m = 5.<br> <br>
+<br>Here how it looks for n=2 and m = 5.<br> For precise calculation one can use the following <a href="https://github.com/boraniev/boraniev.github.io/blob/master/prob/modifiedpascal.py">python code.</a> <br>
 
 <img id="bincell" src="pascalstri.PNG" class="img-fluid" </img>
 <br>You can create a simulation with the script below (the initial parameters are set as in the example above).the simulation is based on the javascript random function. You can change every parameter of the simulation and please not that if you run too many rounds with a lot of individuals it might get slow.   <br><br><br>
