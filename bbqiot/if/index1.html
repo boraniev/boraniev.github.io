@@ -1,0 +1,121 @@
+
+<!DOCTYPE html> 
+
+<html>
+
+<head> 
+	
+	<link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link type="text/css" rel="stylesheet" href="css/style.css">
+
+	<!--
+	<link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+	-->	
+
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	
+	
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
+	<script src="scripts/dataLayer.js"></script>
+	<script src="scripts/manager.js"></script>
+	
+	
+	
+</head>
+
+	
+	
+<body> 
+	
+		
+	<div class='container'>
+		
+		
+		<div id='header' class='row'>
+		
+		</div>
+
+
+		<!-- cooking button -->
+		<div class='row'>
+			<div class='col-md-4 col-sm-4 col-xs-1'></div>
+			<div class='col-md-4 col-sm-4 col-xs-10'>
+
+			</div>
+		</div>
+		<hr>
+		
+		<div id='deviceInput' class='row'>
+			
+			<div class='col-md-3'></div>
+			<div class='col-md-6'>
+				<h2> Input the email address! </h2>
+				<input id='email' type='text' class='form-control'>
+				<br>
+				
+				<div class='row'>
+					<div class='col-md-6'>
+						<button class='getEmail btn btn-default'>Select Device</button>
+					</div>
+					<div class='col-md-6'>
+						<button class='getAllActive btn btn-dfault'>Get All Active Devices</button>
+					</div>
+				</div>
+				
+				
+				
+				<input type='hidden' id='coreid' >
+				<span class='green'>  </span>
+				
+				<br> 
+
+				<div class='row'>
+					<div class='col-md-5'></div>
+					<div class='col-md-1'>
+						<span class='status active'></span>
+					</div>
+					<div class='col-md-1'>
+						<span class="status notActive"></span>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>		
+
+		
+		<!-- extra -->
+		<div class='col-md-3'></div>		
+		<div class='row'>
+			
+			<div class='col-md-6'>
+				<h2> Current Stats </h2>
+
+				
+				<h4 class='getTemp'></h4>
+				<button class='reload btn btn-defualt'> Reload Results </button>
+			</div>
+			
+			
+	
+			
+		</div>
+
+		
+		<!-- graph -->
+		
+		
+	
+	
+</body>	
+
+</html>
