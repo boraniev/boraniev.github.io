@@ -63,12 +63,35 @@ while a<=players:
 a=0
 totalwin=0
 totalloss=0
+totallosers=0
+moderatewinners=0
+winners=0
+superwinners=0
+totalloserswealth=0
+totalmoderatewinnerswealth=0
+totalwinnerswealth=0
+superwinnerswealth=0
 while a<players:
 	print(y[a],x[a],xperc[a])
 	totalwin=totalwin+xwin[a]
 	totalloss=totalloss+xloss[a]
+	if x[a]<100.0:
+		totallosers=totallosers+1
+		totalloserswealth=totalloserswealth+x[a]
+	if x[a]>100.0 and x[a]<500.0:
+		moderatewinners=moderatewinners+1
+		totalmoderatewinnerswealth=totalmoderatewinnerswealth+x[a]
+	if x[a]>500.0 and x[a]<2000.0:
+		winners=winners+1	
+		totalwinnerswealth=totalwinnerswealth+x[a]
+	if x[a]>2000.0:
+		superwinners=superwinners+1
+		superwinnerswealth=superwinnerswealth+x[a]
 	a=a+1
 print("++++++++++++++++++++++++++++++++")
+print(totalsum/players)
 print(totalsum, totalwin,totalloss)
 print(totalwin/(totalwin+totalloss)*100)
+print(totallosers,moderatewinners,winners,superwinners)
+print("loosers wealth", totalloserswealth, "moderate wealth ".totalmoderatewinnerswealth, "winners wealth",totalwinnerswealth,"super winners wealth",superwinnerswealth)
 
