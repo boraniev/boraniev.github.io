@@ -1,0 +1,159 @@
+<html lang="en">
+  <head>
+
+<script type="text/javascript">
+// @ts-check
+var prog=[];
+var cc=0;
+var myInterval;
+function start() {
+    var exercises=0;
+    var temp_var="";
+    var set1=0;
+    var counter=0;
+    var ns=parseFloat(document.getElementById("nosets").value);
+	var sl=parseFloat(document.getElementById("setlong").value)*1000;
+    var si=parseFloat(document.getElementById("setinterval").value)*1000;
+    var ei=parseFloat(document.getElementById("exerciseinterval").value)*1000;
+    var ne=parseFloat(document.getElementById("noexercises").value);
+    for(exercises=1;exercises<=ne;exercises++) {
+        var temp_obj={type:"",value:0}
+    //BUILD THE EXEC PLAN         
+        for(set1=1;set1<=ns;set1++){
+            
+            if(set1!=ns){
+                temp_obj.type="exercise";
+                temp_obj.value=sl;
+                prog[counter]=Object.values(temp_obj);
+                
+                counter++;
+                temp_obj.type="pause1";
+                temp_obj.value=si;
+                prog[counter]=Object.values(temp_obj);
+                
+                counter++;
+            }else{
+                temp_obj.type="exercise";
+                temp_obj.value=sl;
+                prog[counter]=Object.values(temp_obj);
+                
+                counter++;
+                temp_obj.type="pause2";
+                temp_obj.value=ei;
+                prog[counter]=Object.values(temp_obj);
+                
+                counter++;
+            }
+        }
+    }
+
+    var i = 0;
+    var estimatedtim=0
+    var startDate=new Date();
+    myInterval=window.setInterval(displayClock,1000, startDate);
+    console.log("prog lenght is " ,prog.length);
+    for(i=0;i<prog.length;i++) {
+        console.log(i);
+        if(prog[i][0]=="exercise"){
+            console.log("exercise");
+            setTimeout(exercise,estimatedtim);
+            estimatedtim=estimatedtim+sl  ;
+        }
+        if(prog[i][0]=="pause1"){
+            console.log("pause1");
+            setTimeout(pause1,estimatedtim);
+            estimatedtim=estimatedtim+si  ;
+        }
+        if(prog[i][0]=="pause2"){
+            console.log("pause2");
+            if(i==prog.length-1){
+                setTimeout(finished,estimatedtim); 
+            }else{
+                setTimeout(pause2,estimatedtim);
+            }
+            estimatedtim=estimatedtim+ei  ;
+        }
+        
+        console.log(prog[i][0],prog[i][1])    
+    } 
+     
+    console.log(prog);
+    console.log("done");
+    
+
+
+    document.getElementById("line1").innerHTML = "DONE";
+    
+}
+function exercise(){
+    document.getElementById("line1").innerHTML = "EXERCISE "+parseFloat(document.getElementById("setlong").value)+" seconds";;
+    var x = document.getElementById("whatisgoingon");
+    x.setAttribute("src", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.besthealthmag.ca%2Fwp-content%2Fuploads%2F2020%2F04%2Fhalo-effect-of-exercise.jpg&amp;f=1&amp;nofb=1");
+    var audio = new Audio('beep.mp3');
+    audio.play();
+}
+function pause1(){
+    document.getElementById("line1").innerHTML = "PAUSE BETWEEN SETS "+parseFloat(document.getElementById("setinterval").value)+" seconds";
+    var x = document.getElementById("whatisgoingon");
+    x.setAttribute("src", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdarebee.com%2Fimages%2Ffitness%2Frest-days.jpg&amp;f=1&amp;nofb=1");
+    var audio = new Audio('beep.mp3');
+    audio.play();
+}
+function pause2(){
+    document.getElementById("line1").innerHTML = "PAUSE BETWEEN EXERCISE "+parseFloat(document.getElementById("exerciseinterval").value)+" seconds";
+    var x = document.getElementById("whatisgoingon");
+    x.setAttribute("src", "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.powerdojo.com%2Fwp-content%2Fuploads%2F2016%2F05%2Frest-and-recovery.jpg&amp;f=1&amp;nofb=1");
+    var audio = new Audio('beep.mp3');
+    audio.play();
+}
+function finished(){
+    document.getElementById("line1").innerHTML = "Done. ";
+    var x = document.getElementById("whatisgoingon");
+    x.setAttribute("src", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.uscustomstickers.com%2Fwp-content%2Fuploads%2F2018%2F09%2FGood-Job-Thumbs-Up-Sticker.png&f=1&nofb=1");
+    var audio = new Audio('beep.mp3');
+    audio.play();
+    clearInterval(myInterval);
+}
+
+function displayClock(startDate){
+var regc;
+var d = new Date();
+var h;
+var m;
+var s
+var regd;
+regd=(d-startDate)/1000;
+regd=Math.round(regd);
+h=d.getHours();
+m=d.getMinutes();
+s=d.getSeconds();
+regc=h+":"+m+":"+s
+document.getElementById("difference").innerHTML = regd;
+}
+
+
+
+</script>
+</head>
+
+<h1 style="text-align: center;"><span style="font-size: 14px;"><br /></span>Ljupco's Exercise Application</h1>
+<hr />
+<div style="text-align: center;">&nbsp;
+
+
+<form> 
+Number of sets: <input id="nosets" name="Number of sets" type="text" value="3" /> <br />
+Longevity of the set in seconds: <input id="setlong" name="Longevity of the let in seconds" type="text" value="30" /> <br />
+Interval between sets in seconds: <input id="setinterval" name="Interval between sets in seconds" type="text" value="45" /> <br />
+Interval between exercises in seconds: <input id="exerciseinterval" name="Interval between exercises in seconds" type="text" value="100" /> <br />
+Number of exercises <input id="noexercises" name="Number of exercises" type="text" value="3" /> <br /> 
+</form> 
+<button onclick="start()">Start</button>
+<hr />
+<p id="line1"> Let's get going! </p>
+<p id="temp_v1"> </p>
+<hr />
+<img id="whatisgoingon" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.istockphoto.com%2Fvectors%2Fare-you-ready-sign-with-megaphone-vector-id1136662224&amp;f=1&amp;nofb=1" alt="" width="204" height="118" /></p>
+<hr />
+<H1>Elapsed time in seconds </H1> <p style="color:blue;font-size:100px;" id="difference" > 0 </p>
+</div>
