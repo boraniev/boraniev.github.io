@@ -1,1 +1,177 @@
 
+create a json structure with the following elements customer and contact
+
+{
+  "customer": {
+    "name": "John Doe",
+    "contact": {
+      "phone": "123-456-7890",
+      "email": "john.doe@example.com"
+    }
+  }
+}
+Create a python rest API with the json above as an input and it should return a json with random customerid and all the imfo about the customer. The rest api and the borser that invokes it are in different domains.
+
+import json
+from flask import Flask, request
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
+
+@app.route('/customer', methods=['POST'])
+def customer_info():
+    req_data = request.get_json()
+    name = req_data['customer']['name']
+    phone = req_data['customer']['contact']['phone']
+    email = req_data['customer']['contact']['email']
+
+    customer_id = ''.join(random.choice('0123456789ABCDEF') for i in range(16))
+
+    res = {
+        'customer_id': customer_id,
+        'name': name,
+        'phone': phone,
+        'email': email
+    }
+
+    return json.dumps(res)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+write an html code that will get the information and invoke the python rest inteface using the json inteface above, considering that the html code and the api are in differnet domains
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Info</title>
+  <script type="text/javascript">
+    function sendRequest() {
+      // get customer info from form
+      var name = document.getElementById('name').value;
+      var phone = document.getElementById('phone').value;
+      var email = document.getElementById('email').value;
+
+      // construct JSON data
+      var data = {
+        "customer": {
+          "name": name,
+          "contact": {
+            "phone": phone,
+            "email": email
+          }
+        }
+      };
+      
+      // send request
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://example.com/customer', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.response);
+          // do something with response
+        }
+
+
+write an html code that will get the information and invoke the python rest inteface using the json inteface above and display the responce on the scree, considering that the html code and the api are in differnet domains
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Info</title>
+  <script type="text/javascript">
+    function sendRequest() {
+      // get customer info from form
+      var name = document.getElementById('name').value;
+      var phone = document.getElementById('phone').value;
+      var email = document.getElementById('email').value;
+
+      // construct JSON data
+      var data = {
+        "customer": {
+          "name": name,
+          "contact": {
+            "phone": phone,
+            "email": email
+          }
+        }
+      };
+      
+      // send request
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://example.com/customer', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.response);
+          // do something with response
+        }
+      };
+      xhr.send(JSON.stringify(data));
+    }
+  </script>
+</head>
+<body>
+  <form>
+    Name: <input type="text" name="name" id="name" />
+    Phone: <input type="text" name="phone" id="phone" />
+    Email: <input type="text" name="email" id="email" />
+    <input type="button" value="Send" onclick="sendRequest()" />
+  </form>
+</body>
+</html>
+
+
+write an html code that will get the information and invoke the python rest inteface using the json inteface above and display the responce on the scree, considering that the html code and the api are in differnet domains
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Info</title>
+  <script type="text/javascript">
+    function sendRequest() {
+      // get customer info from form
+      var name = document.getElementById('name').value;
+      var phone = document.getElementById('phone').value;
+      var email = document.getElementById('email').value;
+
+      // construct JSON data
+      var data = {
+        "customer": {
+          "name": name,
+          "contact": {
+            "phone": phone,
+            "email": email
+          }
+        }
+      };
+      
+      // send request
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://example.com/customer', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.response);
+
+          // display customer id
+          var output = document.getElementById('output');
+          output.innerHTML = 'Customer ID: ' + response.customer_id;
+        }
+      };
+      xhr.send(JSON.stringify(data));
+    }
+  </script>
+</head>
+<body>
+  <form>
+    Name: <input type="text" name="name" id="name" />
+    Phone: <input type="text" name="phone" id="phone" />
+    Email: <input type="text" name="email" id="email" />
+    <input type="button" value="Send" onclick="sendRequest()" />
+  </form>
+  <div id="output"></div>
+</body>
+</html>
