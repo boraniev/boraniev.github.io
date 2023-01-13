@@ -1,0 +1,281 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 6.4.7.2 (Linux)"/>
+	<meta name="created" content="2023-01-12T16:48:59.791510561"/>
+	<meta name="changed" content="2023-01-12T19:34:02.508478045"/>
+	<style type="text/css">
+		@page { size: 8.5in 11in; margin: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 115%; background: transparent }
+		td p { background: transparent }
+		pre { background: transparent }
+		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		pre.cjk { font-family: "Noto Sans Mono CJK SC", monospace; font-size: 10pt }
+		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		code.western { font-family: "Liberation Mono", monospace }
+		code.cjk { font-family: "Noto Sans Mono CJK SC", monospace }
+		code.ctl { font-family: "Liberation Mono", monospace }
+		a:link { color: #000080; so-language: zxx; text-decoration: underline }
+		a:visited { color: #800000; so-language: zxx; text-decoration: underline }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><p style="margin-bottom: 0in; font-weight: normal; line-height: 100%">
+Finally, I got my hands on ChatGPT and I decided to check its
+capabilities. In my first test I tried to make ChatGPT to help me 
+build a very small and simple application that will have a 2
+components. 
+</p>
+<ol>
+	<li><p style="margin-bottom: 0in; font-weight: normal; line-height: 100%">
+	First, a simple HTML file that will expect user to input a company
+	name and contact name within the company, then send that info to an
+	API to get a customer ID and display it. 
+	</p>
+	<li><p style="margin-bottom: 0in; font-weight: normal; line-height: 100%">
+	Second,  an API that will be getting a JSON as a parameter, generate
+	a random number as a customer ID and return it. 
+	</p>
+</ol>
+<p style="margin-bottom: 0in; font-weight: normal; line-height: 100%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; font-weight: normal; line-height: 100%">
+Here it how it went (my conversation with ChatGPT): 
+</p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0in; line-height: 100%"><b>Me:</b></p>
+<p style="margin-bottom: 0in; line-height: 100%">Create a JSON
+structure with the following elements company name and contact name</p>
+<p><br/>
+<br/>
+
+</p>
+<p><b>ChatGPT:</b></p>
+<p>{ &quot;company&quot;: { &quot;name&quot;: &quot;&quot;,
+&quot;contact&quot;: { &quot;name&quot;: &quot;&quot; } } }</p>
+<p>Please note that the above is just an example, the values for
+&quot;name&quot; should be filled in with the appropriate
+information.</p>
+<p style="margin-bottom: 0in; line-height: 100%"><b>Me:</b></p>
+<p>Create a python rest API with the json above as an input and it
+should return a json with random customerid and all the info about
+the customer. The rest API and the browser that invokes it are in
+different domains.</p>
+<p><b>ChatGPT:</b></p>
+<p>Here's an example of a Python REST API that takes the JSON
+structure you provided as input and returns a JSON with a random
+customer ID and all the information about the customer:</p>
+<pre class="western"><code class="western">from flask import Flask, jsonify, request</code>
+<code class="western">import json</code>
+<code class="western">import random</code>
+
+<code class="western">app = Flask(__name__)</code>
+
+<code class="western">@app.route('/customer', methods=['POST'])</code>
+<code class="western">def create_customer():</code>
+<code class="western">    </code><code class="western">data = json.loads(request.data)</code>
+<code class="western">    </code><code class="western">customer_id = str(random.randint(1, 10000))</code>
+<code class="western">    </code><code class="western">customer_info = {</code>
+<code class="western">        </code><code class="western">&quot;customer_id&quot;: customer_id,</code>
+<code class="western">        </code><code class="western">&quot;company&quot;: data[&quot;company&quot;],</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">    </code><code class="western">return jsonify(customer_info)</code>
+
+<code class="western">if __name__ == '__main__':</code>
+<code class="western">    </code><code class="western">app.run(debug=True)</code></pre><p>
+This API is using the Flask library to create a web server and define
+a route for the /customer endpoint, which accepts a POST request. The
+request data is loaded as a JSON object and a random customer ID is
+generated. A new JSON object is then created with the customer ID and
+the data from the request, and returned as the response.</p>
+<p>To handle cross-domain request you could use CORS (Cross-Origin
+Resource Sharing) headers. You can install a python package called
+<code class="western">flask-cors</code> and use it as a middleware to
+handle CORS headers in your flask application.</p>
+<pre class="western"><code class="western">from flask_cors import CORS</code>
+
+<code class="western">app = Flask(__name__)</code>
+<code class="western">CORS(app)</code>
+
+<code class="western">@app.route('/customer', methods=['POST'])</code>
+<code class="western">def create_customer():</code>
+<code class="western">    </code><code class="western">data = json.loads(request.data)</code>
+<code class="western">    </code><code class="western">customer_id = str(random.randint(1, 10000))</code>
+<code class="western">    </code><code class="western">customer_info = {</code>
+<code class="western">        </code><code class="western">&quot;customer_id&quot;: customer_id,</code>
+<code class="western">        </code><code class="western">&quot;company&quot;: data[&quot;company&quot;],</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">    </code><code class="western">return jsonify(customer_info)</code>
+
+<code class="western">if __name__ == '__main__':</code>
+<code class="western">    </code><code class="western">app.run(debug=True)</code></pre><p>
+This way you will be able to perform cross-origin request to your API
+from any domain.</p>
+<p style="margin-bottom: 0in; line-height: 100%"><b>Me:</b></p>
+<p>Write an HTML code that will get the information and invoke the
+python rest interface using the JSON interface above and display the
+response on the scree, considering that the HTML code and the API are
+in different domains</p>
+<p><b>ChatGPT:</b></p>
+<p>Here's an example of an HTML code that invokes the Python REST API
+using the JSON structure you provided, and displays the response on
+the screen, considering that the HTML code and the API are in
+different domains:</p>
+<pre class="western"><code class="western">&lt;!DOCTYPE html&gt;</code>
+<code class="western">&lt;html&gt;</code>
+<code class="western">&lt;head&gt;</code>
+<code class="western">  </code><code class="western">&lt;script&gt;</code>
+<code class="western">    </code><code class="western">function submitForm() {</code>
+<code class="western">      </code><code class="western">var company = {</code>
+<code class="western">        </code><code class="western">&quot;name&quot;: document.getElementById(&quot;company_name&quot;).value,</code>
+<code class="western">        </code><code class="western">&quot;contact&quot;: {</code>
+<code class="western">          </code><code class="western">&quot;name&quot;: document.getElementById(&quot;contact_name&quot;).value</code>
+<code class="western">        </code><code class="western">}</code>
+<code class="western">      </code><code class="western">};</code>
+
+<code class="western">      </code><code class="western">var xhr = new XMLHttpRequest();</code>
+<code class="western">      </code><code class="western">xhr.open(&quot;POST&quot;, &quot;http://api.example.com/customer&quot;, true);</code>
+<code class="western">      </code><code class="western">xhr.setRequestHeader(&quot;Content-Type&quot;, &quot;application/json&quot;);</code>
+<code class="western">      </code><code class="western">xhr.setRequestHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);</code>
+<code class="western">      </code><code class="western">xhr.onreadystatechange = function () {</code>
+<code class="western">        </code><code class="western">if (xhr.readyState === 4 &amp;&amp; xhr.status === 200) {</code>
+<code class="western">          </code><code class="western">var json = JSON.parse(xhr.responseText);</code>
+<code class="western">          </code><code class="western">document.getElementById(&quot;customer_id&quot;).innerHTML = json.customer_id;</code>
+<code class="western">        </code><code class="western">}</code>
+<code class="western">      </code><code class="western">};</code>
+<code class="western">      </code><code class="western">var data = JSON.stringify(company);</code>
+<code class="western">      </code><code class="western">xhr.send(data);</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">  </code><code class="western">&lt;/script&gt;</code>
+<code class="western">&lt;/head&gt;</code>
+<code class="western">&lt;body&gt;</code>
+<code class="western">  </code><code class="western">&lt;form&gt;</code>
+<code class="western">    </code><code class="western">&lt;label for=&quot;company_name&quot;&gt;Company Name:&lt;/label&gt;</code>
+<code class="western">    </code><code class="western">&lt;input type=&quot;text&quot; id=&quot;company_name&quot; name=&quot;company_name&quot;&gt;</code>
+<code class="western">    </code><code class="western">&lt;br&gt;</code>
+<code class="western">    </code><code class="western">&lt;label for=&quot;contact_name&quot;&gt;Contact Name:&lt;/label&gt;</code>
+<code class="western">    </code><code class="western">&lt;input type=&quot;text&quot; id=&quot;contact_name&quot; name=&quot;contact_name&quot;&gt;</code>
+<code class="western">    </code><code class="western">&lt;br&gt;</code>
+<code class="western">    </code><code class="western">&lt;button type=&quot;button&quot; onclick=&quot;submitForm()&quot;&gt;Submit&lt;/button&gt;</code>
+<code class="western">  </code><code class="western">&lt;/form&gt;</code>
+<code class="western">  </code><code class="western">&lt;br&gt;</code>
+<code class="western">  </code><code class="western">&lt;p&gt;Customer ID: &lt;span id=&quot;customer_id&quot;&gt;&lt;/span&gt;&lt;/p&gt;</code>
+<code class="western">&lt;/body&gt;</code>
+<code class="western">&lt;/html&gt;</code></pre><p>
+In this example, the HTML code contains a form with input fields for
+the company name and contact name, and a button to submit the form.
+The <code class="western">submitForm</code> function is called when
+the button is clicked. This function creates a JavaScript object with
+the company name and contact name from the input fields, and sends a
+POST request to the API's endpoint with the JSON data. It also sets
+the &quot;Content-Type&quot; and &quot;Access-Control-Allow-Origin&quot;
+headers to &quot;application/json&quot; and &quot;*&quot;
+respectively.</p>
+<p>The <code class="western">onreadystatechange</code> event handler
+is used to check if the response is ready and the status is OK, and
+if so, it parse the response to JSON, and update the customer_id
+element with the returned customer_id value.</p>
+<p>Please note that the example above uses the
+<code class="western">Access-Control-Allow-Origin</code> header to
+allow any origin, but it's a good practice to use only the specific
+domains that you need to allow.</p>
+<p>Also keep in mind that this example uses the <code class="western">XMLHttpRequest</code>
+object which is now considered as an obsolete technology, you should
+consider using the <code class="western">Fetch API</code> instead,
+which is more modern and easier to use.</p>
+<p><br/>
+<br/>
+
+</p>
+<p><b>What I did after:</b></p>
+<p>I copied and pasted the python and HTML code in separate files and
+did 2 fixes. 
+</p>
+<p>First in the python code I needed a fix for the CORS and second in
+the html file I needed to replace the line 
+</p>
+<pre class="western"><code class="western">xhr.open(&quot;POST&quot;, &quot;http://api.example.com/customer&quot;, true); </code>
+<code class="western">with </code>
+<code class="western">xhr.open(&quot;POST&quot;, &quot;http://localhost:5000/customer&quot;, true);</code>
+
+</pre><p>
+<br/>
+<br/>
+
+</p>
+<table width="100%" cellpadding="4" cellspacing="0">
+	<col width="256*"/>
+
+	<tr>
+		<td width="100%" valign="top" style="border: 1px solid #000000; padding: 0.04in"><p>
+			After that I was able to start the python API: 
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="100%" valign="top" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in"><p>
+			<img src="myfirstChatGPT_html_a69d23c87864eb66.png" name="Image1" align="left" width="555" height="107">
+  <br clear="left"/>
+</img>
+<br/>
+
+			</p>
+			<p><br/>
+
+			</p>
+			<p><br/>
+
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="100%" valign="top" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in"><p>
+			and the HTML in the browser: 
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="100%" valign="top" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in"><p>
+			<img src="myfirstChatGPT_html_9f8f24c99e20a248.png" name="Image2" align="left" width="530" height="112" border="0"/>
+<br/>
+
+			</p>
+			<p><br/>
+
+			</p>
+		</td>
+	</tr>
+</table>
+<p><br/>
+<br/>
+
+</p>
+<p>Note that the Customer ID was returned form the service. 
+</p>
+<p><br/>
+<br/>
+
+</p>
+<p><b>First Impression:</b></p>
+<p>I am very please with the result and I believe the next 10 to 15
+years the majority of the programming will be done via AI programmers
+and the focus of the business and IT folks will be to manage the
+requirements right to extract maximum value. 
+</p>
+<p>One thing I could not help but notice is that ChatGPT was having a
+conversation with me the same way a fellow developer will and he was
+nice to explain in details what he was doing and give me pointers
+about the code and what I need to pay attention to. I really liked
+that. 
+</p>
+<p><br/>
+<br/>
+
+</p>
+</body>
+</html>
