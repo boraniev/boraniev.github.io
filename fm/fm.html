@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+* {
+
+  box-sizing: border-box;
+
+}
+
+
+#myInput {
+
+  background-image: url('/css/searchicon.png');
+
+  background-position: 10px 12px;
+
+  background-repeat: no-repeat;
+
+  width: 100%;
+
+  font-size: 16px;
+
+  padding: 12px 20px 12px 40px;
+
+  border: 1px solid #ddd;
+
+  margin-bottom: 12px;
+
+}
+
+
+#myUL {
+
+  list-style-type: none;
+
+  padding: 0;
+
+  margin: 0;
+
+}
+
+
+#myUL li a {
+
+  border: 1px solid #ddd;
+
+  margin-top: -1px; /* Prevent double borders */
+
+  background-color: #f6f6f6;
+
+  padding: 12px;
+
+  text-decoration: none;
+
+  font-size: 18px;
+
+  color: black;
+
+  display: block
+
+}
+
+
+#myUL li a:hover:not(.header) {
+
+  background-color: #eee;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<h2><Fieldset:d></Fieldset:d>Foodmap or not</h2>
+
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+
+<ul id="myUL">
+
+  
+
+  <li><a href="#"> foodmap-artichokes
+
+  </a></li>
+
+  <li><a href="#"> foodmap-asparagus
+
+  </a></li>
+
+  <li><a href="#"> foodmap-beetroot
+
+  </a></li>
+
+  <li><a href="#"> foodmap-chicory
+
+  </a></li>
+
+  <li><a href="#"> foodmap-dandelion-leaves
+
+  </a></li>
+
+  <li><a href="#"> foodmap-garlic
+
+  </a></li>
+
+  <li><a href="#"> foodmap-leek
+
+  </a></li>
+
+  <li><a href="#"> foodmap-onions
+
+  </a></li>
+
+  <li><a href="#"> foodmap-onion-and-garlic-salt-or-powders,
+
+  </a></li>
+
+  <li><a href="#"> foodmap-radicchio-lettuce
+
+  </a></li>
+
+  <li><a href="#"> foodmap-spring-onions-(white-part)
+
+  </a></li>
+
+  <li><a href="#"> foodmap-barley
+
+  </a></li>
+
+  <li><a href="#"> foodmap-rye
+
+  </a></li>
+
+  <li><a href="#"> foodmap-wheat-(in-large-amounts)
+
+  </a></li>
+
+  <li><a href="#"> foodmap-fructooligosaccharides
+
+  </a></li>
+
+  <li><a href="#"> foodmap-inulin
+
+  </a></li>
+
+  <li><a href="#"> foodmap-cashews
+
+  </a></li>
+
+  <li><a href="#"> foodmap-pistachios
+
+  </a></li>
+
+  <li><a href="#"> foodmap-baked-beans
+
+  </a></li>
+
+  <li><a href="#"> foodmap-bortolotti-beans
+
+  </a></li>
+
+  <li><a href="#"> foodmap-kidney-beans
+
+  </a></li>
+
+  <li><a href="#"> foodmap-chickpeas
+
+  </a></li>
+
+  <li><a href="#"> foodmap-lentils
+
+  </a></li>
+
+  <li><a href="#"> foodmap-soybeans
+
+  </a></li>
+
+  <li><a href="#"> foodmap-soy
+
+  </a></li>
+
+  <li><a href="#"> foodmap-flour
+
+  </a></li>
+
+  <li><a href="#"> foodmap-some-soy-milk
+
+  </a></li>
+
+  <li><a href="#"> foodmap-milk-(cow,-goat-or-sheep)
+
+  </a></li>
+
+  <li><a href="#"> foodmap-custards
+
+  </a></li>
+
+  <li><a href="#"> foodmap-condensed-and-evaporated-milk,-dairy
+
+  </a></li>
+
+  <li><a href="#"> foodmap-desserts
+
+  </a></li>
+
+  <li><a href="#"> foodmap-ice-cream
+
+  </a></li>
+
+  <li><a href="#"> foodmap-margarine
+
+  </a></li>
+
+  <li><a href="#"> foodmap-powdered-milk
+
+  </a></li>
+
+  <li><a href="#"> foodmap-yogurt
+
+  </a></li>
+
+  <li><a href="#"> foodmap-soft-and-unripened
+
+  </a></li>
+
+  <li><a href="#"> foodmap-cheese-(ricotta,-cottage,-cream,-mascarpone)
+
+  </a></li>
+
+  <li><a href="#"> foodmap-apples
+
+  </a></li>
+
+  <li><a href="#"> foodmap-boysenberries
+
+  </a></li>
+
+  <li><a href="#"> foodmap-figs
+
+  </a></li>
+
+  <li><a href="#"> foodmap-mangoes
+
+  </a></li>
+
+  <li><a href="#"> foodmap-pears
+
+  </a></li>
+
+  <li><a href="#"> foodmap-watermelon
+
+  </a></li>
+
+  <li><a href="#"> foodmap-agave
+
+  </a></li>
+
+  <li><a href="#"> foodmap-corn
+
+  </a></li>
+
+  <li><a href="#"> foodmap-syrup-solids
+
+  </a></li>
+
+  <li><a href="#"> foodmap-high-fructose
+
+  </a></li>
+
+  <li><a href="#"> foodmap-corn-syrup
+
+  </a></li>
+
+  <li><a href="#"> foodmap-honey
+
+  </a></li>
+
+  <li><a href="#"> foodmap-Rum
+
+  </a></li>
+
+  <li><a href="#"> foodmap-apples
+
+  </a></li>
+
+  <li><a href="#"> foodmap-apricots
+
+  </a></li>
+
+  <li><a href="#"> foodmap-blackberries
+
+  </a></li>
+
+  <li><a href="#"> foodmap-cherries
+
+  </a></li>
+
+  <li><a href="#"> foodmap-longons
+
+  </a></li>
+
+  <li><a href="#"> foodmap-lychees
+
+  </a></li>
+
+  <li><a href="#"> foodmap-nectarines
+
+  </a></li>
+
+  <li><a href="#"> foodmap-peaches
+
+  </a></li>
+
+  <li><a href="#"> foodmap-pears
+
+  </a></li>
+
+  <li><a href="#"> foodmap-plums
+
+  </a></li>
+
+  <li><a href="#"> foodmap-prunes
+
+  </a></li>
+
+  <li><a href="#"> foodmap-avocados
+
+  </a></li>
+
+  <li><a href="#"> foodmap-cauliflower
+
+  </a></li>
+
+  <li><a href="#"> foodmap-green-pepper
+
+  </a></li>
+
+  <li><a href="#"> foodmap-mushrooms
+
+  </a></li>
+
+  <li><a href="#"> foodmap-pumpkin
+
+  </a></li>
+
+  <li><a href="#"> foodmap-snow-peas
+
+  </a></li>
+
+  <li><a href="#"> foodmap-sorbitol-(420)
+
+  </a></li>
+
+  <li><a href="#"> foodmap-mannitol-(421)
+
+  </a></li>
+
+  <li><a href="#"> foodmap-isomalt-(953)
+
+  </a></li>
+
+  <li><a href="#"> foodmap-maltitol-(965)
+
+  </a></li>
+
+  <li><a href="#"> foodmap-xylitol-(967)
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-bok-choy
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-bean-sprouts
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-bell-peppers
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-butter
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-lettuce
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-carrots,
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-celery
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-chives
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-corn
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-eggplant
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-green
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-beans
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-tomatoes
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-potatoes
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-spinach
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-garlic-or-onion-infused-oil
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-gluten-free-bread
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-gluten-free-pasta
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-rice
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-rice-noodles
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-quinoa
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-corn-bread
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-oat-spelt-bread
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-rice-cakes
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-potato-chips
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-tortilla-chips
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-firm-tofu
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-lactose-free-milk
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-lactose-free-milk-products-including-cottage-cheese,-ice-cream-and-sorbet
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-Certain-cheeses-such-as-cheddar,-parmesan,-swiss,-and-mozzarella
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-ripe-bananas
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-blueberries
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-grapefruit
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-grapes
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-honeydew
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-lemons
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-limes
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-passion-fruit
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-raspberries
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-strawberries
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-tangelos
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-table-sugar
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-maple-syrup
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-bananas
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-blueberries
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-grapefruit
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-grapes
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-honeydew
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-kiwi
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-lemons
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-limes
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-oranges
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-passion-fruit
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-raspberries
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-table-sugar
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-glucose
+
+  </a></li>
+
+  <li><a href="#"> NOT-FOODPAP-aspartame
+
+  </a></li>
+
+  
+
+</ul>
+
+
+<script>
+
+function myFunction() {
+
+    var input, filter, ul, li, a, i, txtValue;
+
+    input = document.getElementById("myInput");
+
+    filter = input.value.toUpperCase();
+
+    ul = document.getElementById("myUL");
+
+    li = ul.getElementsByTagName("li");
+
+    for (i = 0; i < li.length; i++) {
+
+        a = li[i].getElementsByTagName("a")[0];
+
+        txtValue = a.textContent || a.innerText;
+
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+
+            li[i].style.display = "";
+
+        } else {
+
+            li[i].style.display = "none";
+
+        }
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
