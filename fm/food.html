@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input, button {
+            margin: 5px 0;
+            padding: 10px;
+            width: 100%;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        canvas {
+            margin-top: 20px;
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+        <h1>Calorie Tracker</h1>
+        <label for="date">Date:</label>
+        <input type="date" id="date">
+        <label for="food">Food:</label>
+        <input type="text" id="food" placeholder="Enter food item">
+        <label for="calories">Calories:</label>
+        <input type="number" id="calories" placeholder="Enter calories">
+        <label for="targetCalories">Target Calories per Day:</label>
+        <input type="number" id="targetCalories" placeholder="Enter target calories">
+        <button onclick="addEntry()">Add Entry</button>
+        <table id="entriesTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Calories</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <canvas id="caloriesChart" width="600" height="400"></canvas>
+        <div class="tooltip" id="tooltip"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let chart;
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('date').valueAsDate = new Date();
+            loadEntries();
+            loadTargetCalories();
+            drawChart();
+        });
+
+        function addEntry() {
+            const date = document.getElementById('date').value;
+            const food = document.getElementById('food').value;
+            const calories = document.getElementById('calories').value;
+            const targetCalories = document.getElementById('targetCalories').value;
+
+            if (date && food && calories) {
+                const entry = { date, food, calories: parseInt(calories) };
+                let entries = JSON.parse(localStorage.getItem('entries')) || [];
+                entries.push(entry);
+                localStorage.setItem('entries', JSON.stringify(entries));
+                if (targetCalories) {
+                    localStorage.setItem('targetCalories', targetCalories);
+                }
+                loadEntries();
+                drawChart();
+            }
+        }
+
+        function loadEntries() {
+            const entries = JSON.parse(localStorage.getItem('entries')) || [];
+            const tbody = document.getElementById('entriesTable').querySelector('tbody');
+            tbody.innerHTML = '';
+
+            const caloriesPerDay = {};
+            const foodPerDay = {};
+
+            entries.forEach(entry => {
+                if (!caloriesPerDay[entry.date]) {
+                    caloriesPerDay[entry.date] = 0;
+                    foodPerDay[entry.date] = [];
+                }
+                caloriesPerDay[entry.date] += entry.calories;
+                foodPerDay[entry.date].push(entry);
+            });
+
+            const dates = Object.keys(caloriesPerDay).sort((a, b) => new Date(b) - new Date(a)).slice(0, 2);
+
+            dates.forEach(date => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td class="date-cell" data-date="${date}">${date}</td><td>${caloriesPerDay[date]}</td><td></td>`;
+                const actionsCell = row.querySelector('td:last-child');
+                foodPerDay[date].forEach(entry => {
+                    const foodRow = document.createElement('div');
+                    foodRow.innerHTML = `${entry.food}: ${entry.calories} cal <button onclick="removeEntry('${entry.date}', '${entry.food}')">Remove</button>`;
+                    actionsCell.appendChild(foodRow);
+                });
+                tbody.appendChild(row);
+            });
+
+            document.querySelectorAll('.date-cell').forEach(cell => {
+                cell.addEventListener('mouseover', showTooltip);
+                cell.addEventListener('mouseout', hideTooltip);
+            });
+        }
+
+        function loadTargetCalories() {
+            const targetCalories = localStorage.getItem('targetCalories');
+            if (targetCalories) {
+                document.getElementById('targetCalories').value = targetCalories;
+            }
+        }
+
+        function drawChart() {
+            const entries = JSON.parse(localStorage.getItem('entries')) || [];
+            const targetCalories = localStorage.getItem('targetCalories') || 0;
+            const caloriesPerDay = {};
+
+            entries.forEach(entry => {
+                if (!caloriesPerDay[entry.date]) {
+                    caloriesPerDay[entry.date] = 0;
+                }
+                caloriesPerDay[entry.date] += entry.calories;
+            });
+
+            const labels = Object.keys(caloriesPerDay);
+            const data = Object.values(caloriesPerDay);
+
+            const ctx = document.getElementById('caloriesChart').getContext('2d');
+
+            if (chart) {
+                chart.destroy();
+            }
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Calories',
+                        data: data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }, {
+                        label: 'Target Calories',
+                        data: new Array(labels.length).fill(targetCalories),
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function removeEntry(date, food) {
+            let entries = JSON.parse(localStorage.getItem('entries')) || [];
+            entries = entries.filter(entry => !(entry.date === date && entry.food === food));
+            localStorage.setItem('entries', JSON.stringify(entries));
+            loadEntries();
+            drawChart();
+        }
+
+        function showTooltip(event) {
+            const date = event.target.getAttribute('data-date');
+            const entries = JSON.parse(localStorage.getItem('entries')) || [];
+            const foodItems = entries.filter(entry => entry.date === date).map(entry => `${entry.food}: ${entry.calories} cal`);
+            const tooltip = document.getElementById('tooltip');
+            tooltip.innerHTML = foodItems.join('<br>');
+            tooltip.style.display = 'block';
+            tooltip.style.left = `${event.pageX + 10}px`;
+            tooltip.style.top = `${event.pageY + 10}px`;
+        }
+
+        function hideTooltip() {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+
