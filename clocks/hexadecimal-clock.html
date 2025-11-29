@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hexadecimal Clock</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    h1{color:var(--green);text-shadow:0 0 18px rgba(57,255,20,0.25)}
+    .note{max-width:720px;margin:12px auto;color:rgba(255,255,255,0.9)}
+  </style>
+</head>
+<body>
+  <main class="page center">
+    <div class="content-box">
+      <h1>Hexadecimal Clock</h1>
+      <div id="digital" class="digital-time" aria-live="polite">00:00:00</div>
+      <p class="note">Time displayed in hexadecimal (base 16). Components are shown as two-digit hex values (00–17 for hours on 24-hour clock).</p>
+    </div>
+  </main>
+
+  <script>
+    function pad(str,len=2){return str.toString().padStart(len,'0')}
+    function update(){
+      const now = new Date();
+      const h = now.getHours();
+      const m = now.getMinutes();
+      const s = now.getSeconds();
+      const hh = pad(h.toString(16).toUpperCase());
+      const mm = pad(m.toString(16).toUpperCase());
+      const ss = pad(s.toString(16).toUpperCase());
+      document.getElementById('digital').textContent = `${hh}:${mm}:${ss}`;
+    }
+    update();
+    const delay = 1000 - (Date.now() % 1000);
+    setTimeout(()=>{update(); setInterval(update,1000)}, delay);
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Home — Time Systems Playground</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .hero{display:flex;gap:20px;align-items:center;justify-content:center;padding:28px}
+    .hero .illustration{width:220px;height:220px}
+    .card{background:rgba(0,0,0,0.12);padding:18px;border-radius:12px}
+  </style>
+</head>
+<body>
+  <main class="page center">
+    <div class="content-box">
+      <div class="hero">
+        <div class="card">
+          <h2>Welcome</h2>
+          <p>Welcome to Time Systems Playground — an interactive set of clocks showing time in different numeral systems.</p>
+          <p>Use the menu to explore Binary, Octal, Hexadecimal, Decimal, and Swatch Internet Time representations.</p>
+        </div>
+
+        <div class="illustration">
+          <!-- Simple SVG illustration of a clock -->
+          <svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1">
+                <stop offset="0" stop-color="#39ff14" stop-opacity="0.9"/>
+                <stop offset="1" stop-color="#00ffff" stop-opacity="0.7"/>
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="40" fill="url(#g)" opacity="0.14" />
+            <circle cx="50" cy="50" r="36" fill="#111" stroke="#222"/>
+            <line x1="50" y1="50" x2="50" y2="25" stroke="#39ff14" stroke-width="3" stroke-linecap="round"/>
+            <line x1="50" y1="50" x2="68" y2="50" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+      <p class="lead">Each page updates every second and demonstrates how time can be represented in different numeral systems.</p>
+    </div>
+  </main>
+</body>
+</html>

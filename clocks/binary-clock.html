@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Binary Clock</title>
+  <style>
+    :root{
+      --bg1: #222;
+      --bg2: #444;
+      --text: #fff;
+      --cyan: #00ffff;
+      --green: #39ff14;
+      --off: #2f2f2f;
+      --bit-size: 35px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(135deg,var(--bg1),var(--bg2));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      padding:24px;
+    }
+
+    .wrap{
+      text-align:center;
+      max-width:980px;
+      width:100%;
+    }
+
+    h1{
+      margin:0 0 8px 0;
+      font-size:56px;
+      color:var(--green);
+      text-shadow:0 0 18px rgba(57,255,20,0.25), 0 0 36px rgba(57,255,20,0.12);
+      letter-spacing:1px;
+    }
+
+    .digital-time{
+      font-size:28px;
+      margin:6px 0 20px;
+      color:var(--cyan);
+      text-shadow:0 0 10px rgba(0,255,255,0.14);
+      font-weight:600;
+      letter-spacing:2px;
+    }
+
+    .clock{
+      display:flex;
+      gap:28px;
+      justify-content:center;
+      align-items:flex-start;
+      margin:18px 0 12px;
+    }
+
+    .column{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      min-width:120px;
+    }
+
+    .column h3{
+      margin:0 0 6px 0;
+      font-size:16px;
+      font-weight:600;
+      color:var(--text);
+      opacity:0.9;
+    }
+
+    .bits{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:center;
+    }
+
+    .bit{
+      width:var(--bit-size);
+      height:var(--bit-size);
+      background:var(--off);
+      border-radius:12px;
+      transition:background 180ms, box-shadow 180ms, transform 120ms;
+      box-shadow:inset 0 -2px 6px rgba(0,0,0,0.4);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .bit.on{
+      background:linear-gradient(180deg,#aaff7a,var(--green));
+      box-shadow:0 0 18px rgba(57,255,20,0.28), 0 0 36px rgba(57,255,20,0.12);
+      transform:translateY(-2px);
+    }
+
+    .bit small{
+      font-size:11px;
+      color:rgba(0,0,0,0.6);
+      font-weight:700;
+    }
+
+    .explain{
+      margin-top:18px;
+      color:rgba(255,255,255,0.88);
+      font-size:14px;
+      line-height:1.4;
+      max-width:720px;
+      margin-left:auto;
+      margin-right:auto;
+      opacity:0.95;
+    }
+
+    @media (max-width:820px){
+      h1{font-size:44px}
+      .clock{gap:18px}
+      :root{--bit-size:36px}
+    }
+
+    @media (max-width:560px){
+      .clock{flex-direction:column; align-items:center}
+      .column{flex-direction:row; gap:10px}
+      .bits{flex-direction:row}
+      .column h3{margin-bottom:8px}
+      h1{font-size:36px}
+      .digital-time{font-size:20px}
+      :root{--bit-size:30px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <h1>Binary Clock</h1>
+    <div id="digital" class="digital-time" aria-live="polite">00:00:00</div>
+
+    <div class="clock" aria-hidden="false">
+
+      <div class="column" id="hours-col" aria-label="Hours">
+        <h3>Hours</h3>
+        <div class="bits">
+          <div class="bit" data-value="128"></div>
+          <div class="bit" data-value="64"></div>
+          <div class="bit" data-value="32"></div>
+          <div class="bit" data-value="16"></div>
+          <div class="bit" data-value="8"></div>
+          <div class="bit" data-value="4"></div>
+          <div class="bit" data-value="2"></div>
+          <div class="bit" data-value="1"></div>
+        </div>
+      </div>
+
+      <div class="column" id="minutes-col" aria-label="Minutes">
+        <h3>Minutes</h3>
+        <div class="bits">
+          <div class="bit" data-value="128"></div>
+          <div class="bit" data-value="64"></div>
+          <div class="bit" data-value="32"></div>
+          <div class="bit" data-value="16"></div>
+          <div class="bit" data-value="8"></div>
+          <div class="bit" data-value="4"></div>
+          <div class="bit" data-value="2"></div>
+          <div class="bit" data-value="1"></div>
+        </div>
+      </div>
+
+      <div class="column" id="seconds-col" aria-label="Seconds">
+        <h3>Seconds</h3>
+        <div class="bits">
+          <div class="bit" data-value="128"></div>
+          <div class="bit" data-value="64"></div>
+          <div class="bit" data-value="32"></div>
+          <div class="bit" data-value="16"></div>
+          <div class="bit" data-value="8"></div>
+          <div class="bit" data-value="4"></div>
+          <div class="bit" data-value="2"></div>
+          <div class="bit" data-value="1"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="explain">Each column represents a digit of the time (HH:MM:SS). The lit up dots show which powers of 2 add up to that digit. For example, if the number is 7, the dots for 4, 2, and 1 will be lit (4+2+1=7).</p>
+  </div>
+
+  <script>
+    function pad(n){return n.toString().padStart(2,'0')}
+
+    function updateClock(){
+      const now = new Date();
+      const h = now.getHours();
+      const m = now.getMinutes();
+      const s = now.getSeconds();
+
+      document.getElementById('digital').textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+
+      updateColumn('hours-col', h);
+      updateColumn('minutes-col', m);
+      updateColumn('seconds-col', s);
+    }
+
+    function updateColumn(colId, value){
+      const col = document.getElementById(colId);
+      if(!col) return;
+      const bits = Array.from(col.querySelectorAll('.bit'));
+      bits.forEach(bit => {
+        const v = Number(bit.getAttribute('data-value'));
+        if((value & v) === v){
+          bit.classList.add('on');
+        } else {
+          bit.classList.remove('on');
+        }
+      });
+    }
+
+    // initial render
+    updateClock();
+    // ensure ticks happen exactly on second boundaries
+    const now = Date.now();
+    const delay = 1000 - (now % 1000);
+    setTimeout(function(){
+      updateClock();
+      setInterval(updateClock,1000);
+    }, delay);
+  </script>
+</body>
+</html>
