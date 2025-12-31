@@ -50,11 +50,13 @@
 <body>
   <main class="wrap">
     <h1>Time Systems Playground</h1>
-    <p class="lead">Explore different time representations — binary, octal, hexadecimal, decimal, and Swatch Internet Time.</p>
+    <p class="lead">Explore different time representations — binary, octal, hexadecimal, decimal, and Swatch Internet Time. <br><br> 
+    <b>This pages are generated completely by using Gitgub Copilot and GTP-5 mini model.</p>
 
     <div class="site">
       <nav aria-label="Main navigation">
         <ul>
+          <li><a href="https://boraniev.github.io" target="_blank">Project Home</a></li>
           <li><a href="#home" data-src="home.html" class="active">Home</a></li>
           <li><a href="#binary" data-src="binary-clock.html">Binary Clock</a></li>
           <li><a href="#octal" data-src="octal-clock.html">Octal Clock</a></li>
@@ -62,6 +64,7 @@
           <li><a href="#decimal" data-src="decimal-clock.html">Decimal Clock</a></li>
           <li><a href="#swatch" data-src="swatch-clock.html">Swatch Internet Time</a></li>
           <li><a href="#explain" data-src="time-explanation.html">Time System Explanation</a></li>
+          <li><a href="#prompt" data-src="prompt.html">Prompt</a></li>
         </ul>
       </nav>
 
@@ -83,88 +86,31 @@
 
     nav.forEach(a=>{
       a.addEventListener('click', e=>{
-        e.preventDefault();
         const src = a.getAttribute('data-src');
+        const href = a.getAttribute('href');
+        const target = a.getAttribute('target');
+        // If this link maps to an internal page via data-src, load it into the iframe
         if(src){
+          e.preventDefault();
           viewer.src = src;
+          setActive(a);
+          return;
+        }
+
+        // If link is external and opens in a new tab, allow default behavior
+        if(href && target === '_blank'){
+          // do not preventDefault — allow opening in new tab
+          return;
+        }
+
+        // If link has an href but no data-src, try to load href into iframe (fallback)
+        if(href){
+          e.preventDefault();
+          viewer.src = href;
           setActive(a);
         }
       });
     });
   </script>
-  <hr>
-  <section id="prompt-info" aria-label="Prompt that generated this page" style="max-width:1100px;margin:24px auto;padding:16px;border-radius:10px;background:rgba(0,0,0,0.06);">
-    <h2 style="margin-top:0;font-size:1.1rem">Prompt that generated these pages:</h2>
-    <pre style="white-space:pre-wrap;overflow:auto;padding:12px;background:transparent;border-radius:6px;color:var(--text, #ddd);"> 
-
-
-Build a web site called "Time Systems Playground" from scratch. The site should include:
-
-1. A landing page with a welcome message, a brief explanation of the site, and a relevant image or illustration.
-
-2. A navigation menu that loads the following pages in an iframe and highlights the active menu item:
-
-   - Home
-
-   - Binary Clock
-
-   - Octal Clock
-
-   - Hexadecimal Clock
-
-   - Decimal Clock
-
-   - Swatch Internet Time
-
-   - Time System Explanation
-
-3. Each clock page should display the current time in its respective numeral system, updating every second. Use modern, readable styling and ensure accessibility.
-
-4. The Time System Explanation page should clearly explain the historical and practical reasons for the 24-hour day, 60-minute hour, and 60-second minute, with engaging text and visuals.
-
-5. The color scheme across all pages should be unified, using a dark gradient background (e.g., linear-gradient(135deg, #222, #444)) and white text (#fff).
-
-6. The site should be responsive and visually appealing on both desktop and mobile devices.
-
-7. Include a README.md describing the site, its features, and instructions for running locally.
-
-8. Do not include any legacy or old files in navigation or documentation.
-
-Use HTML, CSS, and JavaScript only. Do not use any frameworks or external libraries. All code should be original and well-commented.
-
-For  the binary clock page I used this prompt: 
-binary clock 
-
-Create a web page that looks and behaves exactly like the following binary clock implementation:
-
-- The page title should be "Binary Clock".
-
-- Use a dark gradient background (linear-gradient(135deg, #222, #444)) and white text (#fff).
-
-- Center the content vertically and horizontally.
-
-- Display a large heading "Binary Clock" with a green glow effect.
-
-- Show the current time in digital format (HH:MM:SS) above the clock, styled in cyan with a glow.
-
-- Below, display three columns labeled "Hours", "Minutes", and "Seconds".
-
-- Each column contains 8 boxes representing binary digits (128, 64, 32, 16, 8, 4, 2, 1), styled as squares with rounded corners.
-
-- Lit ("on") bits are bright green with a glow; unlit ("off") bits are dark gray.
-
-- The binary digits update every second to reflect the current time in binary for each unit.
-
-- Include a short explanation below the clock: "Each column represents a digit of the time (HH:MM:SS). The lit up dots show which powers of 2 add up to that digit. For example, if the number is 7, the dots for 4, 2, and 1 will be lit (4+2+1=7)."
-
-- Make the page responsive for mobile devices.
-
-- Use only HTML, CSS, and JavaScript. No frameworks or external libraries.
-
-- Match all colors, layout, and behavior exactly as described above.
-
-
-    </pre>
-  </section>
 </body>
 </html>
