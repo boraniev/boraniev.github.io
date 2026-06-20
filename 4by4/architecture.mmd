@@ -58,6 +58,66 @@ flowchart LR
   UpdateUI --> ProgressBar
   Speak --> TranscriptEl
   Speak -->|uses| VoiceToggle
+```mermaid
+flowchart LR
+  subgraph UI[UI (index.html)]
+    RunSlider["Run Slider\n(#runMinutes)"]
+    StartBtn["Start Button\n(#startBtn)"]
+    PauseBtn["Pause Button\n(#pauseBtn)"]
+    StopBtn["Stop Button\n(#stopBtn)"]
+    VoiceToggle["Voice Toggle\n(#voiceToggle)"]
+    TranscriptEl["Transcript\n(#transcript)"]
+    PhaseName["Phase Name\n(#phaseName)"]
+    TimeLeft["Time Left\n(#timeLeft)"]
+    ProgressBar["Progress Bar\n(#progressBar)"]
+  end
+
+  Script["IIFE: script.js"]
+  Storage["localStorage\n(key: interval_trainer_run_minutes_v1)"]
+  CSS["styles.css\n(progress transitions)"]
+
+  UI -->|events| Script
+  Script -->|reads/writes| Storage
+  CSS --> ProgressBar
+
+  subgraph Logic[script.js — Logic & State]
+    State[("State:\nphases, current, remaining, running, expectedEnd, totalDuration, lastSpokenSecond")]
+    BuildPhases["buildPhases(runMin)\n(generate phases array)"]
+    StartTimer["startTimer()\n(initialize phases, expectedEnd, setInterval)"]
+    PauseTimer["pauseTimer()\n(clearInterval, recalc remaining)"]
+    StopTimer["stopTimer()\n(reset state, cancel speech)"]
+    Tick["tick()\n(interval handler: update remaining)"]
+    NextPhase["nextPhase()\n(advance current, set new remaining)"]
+    UpdateUI["updateUI()\n(render phaseName, timeLeft, progressBar)"]
+    Speak["speak(text, interrupt)\n(update transcript, optional speechSynthesis)"]
+    SecondsFmt["secondsToMMSS(s)"]
+  end
+
+  %% Event wiring
+  StartBtn -->|click| StartTimer
+  PauseBtn -->|click| PauseTimer
+  StopBtn -->|click| StopTimer
+  RunSlider -->|input| BuildPhases
+
+  %% Start flow
+  StartTimer --> BuildPhases
+  StartTimer --> State
+  StartTimer -->|starts| Tick
+
+  %% Tick behavior
+  Tick -->|updates| State
+  Tick -->|calls when <=10s| Speak
+  Tick -->|when remaining<=0| NextPhase
+  NextPhase --> State
+  NextPhase -->|announces| Speak
+  NextPhase --> UpdateUI
+
+  %% UI updates
+  UpdateUI --> PhaseName
+  UpdateUI --> TimeLeft
+  UpdateUI --> ProgressBar
+  Speak --> TranscriptEl
+  Speak -->|uses| VoiceToggle
 
   %% utilities
   BuildPhases --> State
