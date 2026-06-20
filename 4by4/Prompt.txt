@@ -1,0 +1,4 @@
+ want to build a html page that will measure the time and give me voice guidance about the following training: 5 minutes warmap, X minutes run, 3 minutes rest. Repet the last one for 4 times. then 5 minutes slow jog. 
+ X should be configurable. 
+ Use the file ideas.txt as input for the additional requrements. 
+ 

@@ -1,0 +1,28 @@
+:root{
+  --bg:#0f1720;
+  --card:#0b1220;
+  --text:#e6eef8;
+  --accent-warm:#ffb020;
+  --accent-run:#ff4d4f;
+  --accent-rest:#3fb0ff;
+  --accent-jog:#76d0ff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:linear-gradient(180deg,#071021 0%, #0b1220 100%); color:var(--text); padding:24px}
+main{max-width:780px;margin:0 auto;background:rgba(255,255,255,0.02);padding:20px;border-radius:10px}
+h1{margin-top:0;font-size:1.4rem}
+#config label{display:block;margin-bottom:8px}
+#runMinutes{width:100%}
+.controls{margin-top:12px}
+.controls button{padding:10px 14px;margin-right:8px;border-radius:6px;border:0;background:#1f2937;color:var(--text);cursor:pointer}
+.controls button:disabled{opacity:0.5;cursor:not-allowed}
+#status{margin-top:18px}
+.phase,.time{font-size:1.05rem;margin-bottom:6px}
+.progress-wrap{height:18px;background:#0b1220;border-radius:9px;overflow:hidden}
+.progress{height:100%;width:0%;background:linear-gradient(90deg,var(--accent-run),var(--accent-rest));transition:width 0.3s linear}
+.transcript{margin-top:12px;padding:8px;background:rgba(255,255,255,0.02);border-radius:6px;min-height:48px}
+#options{margin-top:14px;font-size:0.95rem}
+@media (prefers-reduced-motion: reduce){
+  .progress{transition:none}
+}

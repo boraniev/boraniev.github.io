@@ -1,0 +1,108 @@
+
+
+Here’s a structured list of non-functional requirements to consider for your HTML training page. These focus on usability, performance, accessibility, and sustainability (if applicable):
+1. Performance & Reliability
+
+    Smooth Timing Accuracy: Ensure the timer is precise (e.g., using setInterval or requestAnimationFrame for JavaScript) and accounts for browser delays.
+    Offline Capability: Use a Service Worker to cache the page and timer logic, allowing the training to run even without internet.
+    Low Latency: Minimize CPU/GPU usage to prevent lag, especially on mobile devices.
+    Battery Efficiency: Optimize JavaScript to reduce battery drain (e.g., avoid unnecessary animations during critical phases like running).
+
+2. Accessibility (WCAG 2.1 AA Compliance)
+
+    Screen Reader Support:
+        Use ARIA labels (e.g., aria-live="polite") for dynamic timer updates.
+        Provide text alternatives for voice guidance (e.g., captions or a transcript).
+    Keyboard Navigation:
+        Ensure all controls (start, pause, skip) are keyboard-accessible.
+        Focus states should be visible for interactive elements.
+    Color Contrast: Use high-contrast colors for text and buttons (e.g., dark text on light backgrounds).
+    Reduced Motion: Offer an option to disable animations (e.g., for users with vestibular disorders).
+    Voice Guidance Clarity:
+        English as a langage is enough 
+        
+
+3. Usability & User Experience
+
+    Configurability:
+        Let users set X (run duration) via a slider with a minute precision.
+
+    Visual Feedback:
+        Progress Bars: Show time remaining for each phase (warmup, run, rest).
+        Color-Coded Phases:
+            Warmup: Yellow/orange
+            Run: Red
+            Rest: Green/blue
+            Slow jog: Light blue
+    Voice Guidance:
+        Pre-Workout: Brief instructions (e.g., “Get ready for your 5-minute warmup”).
+        Phase Transitions: Clear announcements (e.g., “Switching to running in 3… 2… 1…”).
+        Countdowns: Audible countdowns for the last 10 seconds of each phase.
+        Post-Workout: Summary (e.g., “Great job! Total time: 28 minutes”).
+    Pause/Resume: Allow pausing the timer without resetting.
+    Emergency Stop: A visible “Stop” button to abort the session.
+
+
+4. Cross-Platform Compatibility
+
+    Responsive Design:
+        Work seamlessly on mobile, tablet, and desktop.
+        Touch targets (buttons) should be at least 48x48px for mobile.
+    Browser Support:
+        Test on Chrome, Firefox, Safari, and Edge.
+    Fullscreen Mode: Optional fullscreen toggle for immersive focus.
+
+5. Sustainability (Optional but Impactful)
+
+    Energy Efficiency:
+        Reduce screen brightness during the workout to save battery.
+        Use dark mode by default (or allow toggling) to minimize OLED power usage.
+    Minimal Data Usage:
+        Avoid unnecessary API calls or tracking scripts.
+    Longevity:
+        Design for durability (e.g., no auto-updates that break functionality).
+
+6. Security & Privacy
+
+    No Unnecessary Permissions: Avoid requesting microphone/camera access unless voice input is explicitly needed.
+    Data Privacy:
+        If storing user preferences, use localStorage (client-side only) instead of server-side tracking.
+        Add a privacy policy link if collecting any data (even anonymized).
+
+7. Testing & Validation
+
+    Unit Testing: Test timer logic (e.g., 5-minute warmup + 4 rounds of [X-minute run + 3-minute rest] + 5-minute jog).
+    User Testing:
+        Validate voice guidance clarity with diverse users (e.g., non-native speakers).
+        Test on low-end devices to ensure performance.
+    A/B Testing: Experiment with voice tone (e.g., motivational vs. neutral) to see what users prefer.
+
+8. Extensibility (Future-Proofing)
+
+    Modular Code: Structure the JavaScript to easily add new phases (e.g., cooldown, stretching).
+    Plugin Support: Allow users to upload custom voice guidance (e.g., MP3 files).
+    Analytics (Optional): Track workout frequency anonymously (e.g., “You’ve completed 10 sessions this month!”).
+
+9. Error Handling
+
+    Graceful Degradation:
+        If voice guidance fails, fall back to visual countdowns.
+        Handle cases where the user leaves the tab (e.g., pause the timer).
+    Input Validation: Prevent invalid values for X (e.g., negative numbers or non-integers).
+
+10. Aesthetics & Branding
+
+    Theming: Offer light/dark mode or color themes (e.g., “ocean,” “forest”).
+    Minimalist Design: Avoid clutter; prioritize readability during workouts.
+    Custom Icons: Use intuitive symbols (e.g., 🏃 for running, ⏳ for rest).
+
+Example Voice Guidance Script
+
+Here’s a sample script for the voice guidance to inspire your implementation:
+Phase 	Voice Guidance
+Warmup (5 min) 	“Warmup phase. Start with dynamic stretches. 5 minutes remaining.”
+Run (X min) 	“Running phase. Pace yourself. [X] minutes remaining.”
+Rest (3 min) 	“Rest phase. Hydrate and catch your breath. 3 minutes remaining.”
+Slow Jog (5 min) 	“Cool down with a slow jog. Focus on your breathing. 5 minutes remaining.”
+Completion 	“Workout complete! Total time: [total] minutes. Great job!”
+Transitions 	“Switching to running in 3… 2… 1…”
