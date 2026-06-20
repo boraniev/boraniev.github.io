@@ -32,6 +32,10 @@
 
   // Build phases
   function buildPhases(runMin){
+    // ensure runMin is an integer within allowed range
+    runMin = parseInt(runMin, 10) || 2;
+    if(runMin < 1) runMin = 1;
+    if(runMin > 4) runMin = 4;
     const phases = [];
     phases.push({key:'warmup',label:'Warmup',secs:5*60, color:'--accent-warm'});
     for(let i=0;i<4;i++){
