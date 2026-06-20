@@ -24,3 +24,4 @@ Notes & browser support:
 
 The detailed Mermaid diagram is in `architecture.mmd` — open that file or preview it with a Mermaid renderer.
 
+
