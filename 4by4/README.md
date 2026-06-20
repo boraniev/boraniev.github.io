@@ -2,6 +2,7 @@
 
 Open `index.html` in a modern browser (Chrome, Firefox, Edge, Safari).
 
+
 Quick test with a local server:
 
 ```bash
