@@ -20,8 +20,8 @@ flowchart LR
   Script -->|reads/writes| Storage
   CSS --> ProgressBar
 
-  subgraph Logic[script.js — Logic & State]
-    State[("State:\nphases, current, remaining, running, expectedEnd, totalDuration, lastSpokenSecond")]
+  subgraph Logic[script.js - Logic & State]
+    State["State:\nphases, current, remaining, running, expectedEnd, totalDuration, lastSpokenSecond"]
     BuildPhases["buildPhases(runMin)\n(generate phases array)"]
     StartTimer["startTimer()\n(initialize phases, expectedEnd, setInterval)"]
     PauseTimer["pauseTimer()\n(clearInterval, recalc remaining)"]
