@@ -15,7 +15,14 @@
 
   // load saved
   const saved = localStorage.getItem(STORAGE_KEY);
-  if(saved) runSlider.value = saved;
+  if(saved){
+    let v = parseInt(saved,10);
+    if(isNaN(v)) v = 2;
+    // clamp to allowed range 1..4
+    if(v < 1) v = 1;
+    if(v > 4) v = 4;
+    runSlider.value = v;
+  }
   runLabel.textContent = runSlider.value;
 
   runSlider.addEventListener('input', ()=>{
