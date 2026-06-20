@@ -56,6 +56,7 @@
   let running = false;
   let expectedEnd = 0;
   let totalDuration = 0;
+  let lastSpokenSecond = null;
   let tickInterval = null;
 
   function secondsToMMSS(s){
@@ -85,6 +86,7 @@
     }
     running = true; startBtn.disabled = true; pauseBtn.disabled = false; stopBtn.disabled = false;
     expectedEnd = Date.now() + remaining*1000;
+    lastSpokenSecond = null;
     speak(`Get ready. ${phases[current].label} for ${Math.round(phases[current].secs/60)} minutes.`);
     tickInterval = setInterval(tick, 250);
   }
@@ -103,6 +105,7 @@
     clearInterval(tickInterval); tickInterval = null;
     phases = [];
     current = 0; remaining = 0; expectedEnd = 0;
+    lastSpokenSecond = null;
     progressBar.style.width = '0%';
     phaseName.textContent = 'Idle'; timeLeft.textContent = '00:00';
     window.speechSynthesis && window.speechSynthesis.cancel();
@@ -121,6 +124,7 @@
     }
     remaining = phases[current].secs;
     expectedEnd = Date.now() + remaining*1000;
+    lastSpokenSecond = null;
     // Announce transition
     speak(`Switching to ${phases[current].label} in 3... 2... 1...`);
   }
@@ -130,7 +134,12 @@
     remaining = Math.max(0, Math.round((expectedEnd - Date.now())/1000));
     // last 10 sec audible countdown
     if(remaining <= 10 && remaining > 0){
-      speak(String(remaining), false);
+      if(remaining !== lastSpokenSecond){
+        speak(String(remaining), false);
+        lastSpokenSecond = remaining;
+      }
+    } else {
+      lastSpokenSecond = null;
     }
     if(remaining <= 0){
       // phase end
