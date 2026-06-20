@@ -9,7 +9,6 @@
   const timeLeft = document.getElementById('timeLeft');
   const progressBar = document.getElementById('progressBar');
   const transcript = document.getElementById('transcript');
-  const reducedMotion = document.getElementById('reducedMotion');
   const voiceToggle = document.getElementById('voiceToggle');
 
   const STORAGE_KEY = 'interval_trainer_run_minutes_v1';
