@@ -13,6 +13,34 @@
 
   const STORAGE_KEY = 'interval_trainer_run_minutes_v1';
 
+  // Audio keep-alive (used to keep the page active on some mobile browsers when screen locks)
+  let audioCtx = null;
+  let keepAliveSource = null;
+
+  function startAudioKeepAlive(){
+    try{
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return;
+      if(!audioCtx) audioCtx = new AC();
+      if(audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{});
+      if(keepAliveSource) return;
+      const buffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 1, audioCtx.sampleRate); // 1s silence
+      const src = audioCtx.createBufferSource();
+      src.buffer = buffer;
+      src.loop = true;
+      src.connect(audioCtx.destination);
+      src.start(0);
+      keepAliveSource = src;
+    }catch(e){ console.warn('startAudioKeepAlive failed', e); }
+  }
+
+  function stopAudioKeepAlive(){
+    try{
+      if(keepAliveSource){ keepAliveSource.stop(); keepAliveSource.disconnect(); keepAliveSource = null; }
+      if(audioCtx){ audioCtx.close().catch(()=>{}); audioCtx = null; }
+    }catch(e){ /* ignore */ }
+  }
+
   // load saved
   const saved = localStorage.getItem(STORAGE_KEY);
   if(saved){
@@ -96,6 +124,8 @@
       remaining = phases[0].secs;
     }
     running = true; startBtn.disabled = true; pauseBtn.disabled = false; stopBtn.disabled = false;
+    // start audio keep-alive to help prevent suspension on mobile when screen locks
+    startAudioKeepAlive();
     expectedEnd = Date.now() + remaining*1000;
     lastSpokenSecond = null;
     speak(`Get ready. ${phases[current].label} for ${Math.round(phases[current].secs/60)} minutes.`);
@@ -109,6 +139,8 @@
     // recompute remaining
     remaining = Math.max(0, Math.round((expectedEnd - Date.now())/1000));
     speak(`${phases[current].label} paused.`);
+    // stop audio keep-alive when paused
+    stopAudioKeepAlive();
   }
 
   function stopTimer(){
@@ -121,6 +153,8 @@
     phaseName.textContent = 'Idle'; timeLeft.textContent = '00:00';
     window.speechSynthesis && window.speechSynthesis.cancel();
     speak('Workout stopped.');
+    // stop audio keep-alive when stopped
+    stopAudioKeepAlive();
   }
 
   function nextPhase(){
@@ -181,9 +215,9 @@
     }
   });
 
-  // Pause when tab hidden (graceful degradation)
+  // Pause when tab hidden (graceful degradation). If audio keep-alive is active, don't auto-pause.
   document.addEventListener('visibilitychange', ()=>{
-    if(document.hidden && running){
+    if(document.hidden && running && !keepAliveSource){
       pauseTimer();
       transcript.textContent = 'Paused because tab changed focus.';
     }
