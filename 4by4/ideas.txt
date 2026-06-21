@@ -25,7 +25,7 @@ Here’s a structured list of non-functional requirements to consider for your H
 3. Usability & User Experience
 
     Configurability:
-        Let users set X (run duration) via a slider with a minute precision.
+        Let users set X (run duration) via a dropdown selector with minute precision.
 
     Visual Feedback:
         Progress Bars: Show time remaining for each phase (warmup, run, rest).

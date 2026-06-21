@@ -1,6 +1,6 @@
 graph LR
   subgraph UI[UI]
-    RunSlider["Run Slider<br/>(#runMinutes)"]
+    RunSelector["Run Selector<br/>(#runMinutes)"]
     StartBtn["Start Button<br/>(#startBtn)"]
     PauseBtn["Pause Button<br/>(#pauseBtn)"]
     StopBtn["Stop Button<br/>(#stopBtn)"]
@@ -36,7 +36,7 @@ graph LR
   StartBtn -->|click| StartTimer
   PauseBtn -->|click| PauseTimer
   StopBtn -->|click| StopTimer
-  RunSlider -->|input| BuildPhases
+  RunSelector -->|input| BuildPhases
 
   %% Start flow
   StartTimer --> BuildPhases
