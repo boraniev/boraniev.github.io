@@ -9,8 +9,8 @@ python3 -m http.server 8000
 # then open http://localhost:8000 in your browser
 ```
 
-Features:
-- Configurable run duration (`X`) via slider (minutes). Value persists in `localStorage`.
+- Features:
+- Configurable run duration (`X`) via dropdown (1–4 minutes). Value persists in `localStorage`.
 - Sequence: 5 min warmup → (run X + 3 min rest) × 4 → 5 min slow jog.
 - Voice guidance using the Web Speech API (toggleable).
 - Pause/resume and Stop controls, keyboard shortcuts (Space=start/pause, S=stop).
