@@ -1,6 +1,6 @@
 graph LR
-  subgraph UI[UI]
-    RunSelector["Run Selector<br/>(#runMinutes)"]
+  subgraph UI[UI - Norwegian 4x4 Training]
+    RunSelector["Run Selector (dropdown)<br/>(#runMinutes)"]
     StartBtn["Start Button<br/>(#startBtn)"]
     PauseBtn["Pause Button<br/>(#pauseBtn)"]
     StopBtn["Stop Button<br/>(#stopBtn)"]
@@ -11,7 +11,7 @@ graph LR
     ProgressBar["Progress Bar<br/>(#progressBar)"]
   end
 
-  Script["IIFE: script.js"]
+  Script["IIFE: script.js (Norwegian 4x4 Training)"]
   Storage["localStorage (key: interval_trainer_run_minutes_v1)"]
   CSS["styles.css (progress transitions)"]
 
@@ -36,7 +36,7 @@ graph LR
   StartBtn -->|click| StartTimer
   PauseBtn -->|click| PauseTimer
   StopBtn -->|click| StopTimer
-  RunSelector -->|input| BuildPhases
+  RunSelector -->|change| BuildPhases
 
   %% Start flow
   StartTimer --> BuildPhases
