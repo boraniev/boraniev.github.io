@@ -12,7 +12,12 @@
 
     <section id="config">
       <label for="runMinutes">Run duration (minutes): <span id="runMinutesLabel">2</span></label>
-      <input id="runMinutes" type="range" min="1" max="4" step="1" value="2" aria-describedby="runMinutesLabel" />
+      <select id="runMinutes" aria-describedby="runMinutesLabel">
+        <option value="1">1</option>
+        <option value="2" selected>2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
       <div class="controls">
         <button id="startBtn">Start</button>
         <button id="pauseBtn" disabled>Pause</button>

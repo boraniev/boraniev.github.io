@@ -25,7 +25,8 @@
   }
   runLabel.textContent = runSlider.value;
 
-  runSlider.addEventListener('input', ()=>{
+  // update when dropdown changes
+  runSlider.addEventListener('change', ()=>{
     runLabel.textContent = runSlider.value;
     localStorage.setItem(STORAGE_KEY, runSlider.value);
   });
