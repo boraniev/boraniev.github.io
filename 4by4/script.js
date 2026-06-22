@@ -69,7 +69,8 @@
     phases.push({key:'warmup',label:'Warmup',secs:5*60, color:'--accent-warm'});
     for(let i=0;i<4;i++){
       phases.push({key:'run',label:`Run (${i+1})`,secs:runMin*60, color:'--accent-run'});
-      phases.push({key:'rest',label:`Rest (${i+1})`,secs:3*60, color:'--accent-rest'});
+      // add rest only between runs (not after the final run)
+      if(i < 3) phases.push({key:'rest',label:`Rest (${i+1})`,secs:3*60, color:'--accent-rest'});
     }
     phases.push({key:'jog',label:'Slow Jog',secs:5*60, color:'--accent-jog'});
     return phases;
