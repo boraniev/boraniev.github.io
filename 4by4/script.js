@@ -15,28 +15,41 @@
 
   // Audio keep-alive (used to keep the page active on some mobile browsers when screen locks)
   let audioCtx = null;
-  let keepAliveSource = null;
+  let keepAliveSource = null; // will hold {osc, gain}
 
   function startAudioKeepAlive(){
     try{
       const AC = window.AudioContext || window.webkitAudioContext;
       if(!AC) return;
       if(!audioCtx) audioCtx = new AC();
+      // resume if suspended
       if(audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{});
       if(keepAliveSource) return;
-      const buffer = audioCtx.createBuffer(1, audioCtx.sampleRate * 1, audioCtx.sampleRate); // 1s silence
-      const src = audioCtx.createBufferSource();
-      src.buffer = buffer;
-      src.loop = true;
-      src.connect(audioCtx.destination);
-      src.start(0);
-      keepAliveSource = src;
+      // Use an oscillator + very-low gain instead of a silent buffer.
+      // Some iOS versions optimize-away silent buffers; an oscillator is more reliable
+      // at keeping the audio subsystem running while remaining effectively inaudible.
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      // very low inaudible volume
+      gain.gain.value = 0.00001;
+      osc.type = 'sine';
+      // low frequency to avoid potential artifacts
+      osc.frequency.value = 40;
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      keepAliveSource = {osc, gain};
     }catch(e){ console.warn('startAudioKeepAlive failed', e); }
   }
 
   function stopAudioKeepAlive(){
     try{
-      if(keepAliveSource){ keepAliveSource.stop(); keepAliveSource.disconnect(); keepAliveSource = null; }
+      if(keepAliveSource){
+        try{ keepAliveSource.osc.stop(); }catch(e){}
+        try{ keepAliveSource.osc.disconnect(); }catch(e){}
+        try{ keepAliveSource.gain.disconnect(); }catch(e){}
+        keepAliveSource = null;
+      }
       if(audioCtx){ audioCtx.close().catch(()=>{}); audioCtx = null; }
     }catch(e){ /* ignore */ }
   }
@@ -218,9 +231,28 @@
 
   // Pause when tab hidden (graceful degradation). If audio keep-alive is active, don't auto-pause.
   document.addEventListener('visibilitychange', ()=>{
-    if(document.hidden && running && !keepAliveSource){
-      pauseTimer();
-      transcript.textContent = 'Paused because tab changed focus.';
+    if(document.hidden){
+      if(running && !keepAliveSource){
+        pauseTimer();
+        transcript.textContent = 'Paused because tab changed focus.';
+      }
+    }else{
+      // became visible again: try to resume audio and refresh UI/timer immediately
+      if(running){
+        try{ if(audioCtx && audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{}); }catch(e){}
+        // ensure tick runs right away and that interval is active
+        tick();
+        if(!tickInterval) tickInterval = setInterval(tick, 250);
+      }
+    }
+  });
+
+  // pageshow can be fired on mobile when unlocking; ensure audio and ticks resume
+  window.addEventListener('pageshow', (e)=>{
+    if(running){
+      try{ if(audioCtx && audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{}); }catch(e){}
+      tick();
+      if(!tickInterval) tickInterval = setInterval(tick, 250);
     }
   });
 
